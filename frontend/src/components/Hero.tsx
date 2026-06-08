@@ -12,7 +12,7 @@ export default function Hero() {
         >
           <span className="inline-flex items-center gap-2 bg-white border border-slate-200 text-sm text-slate-600 px-4 py-1.5 rounded-full mb-6">
             <span className="text-mint text-xs">&#10022;</span>
-            No more chasing friends for $3.50
+            No more chasing friends for $2.50
           </span>
         </motion.div>
 
