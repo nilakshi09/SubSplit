@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, CreditCard, Filter, Search } from 'lucide-react';
+// import { Plus, CreditCard, Filter, Search } from 'lucide-react';
+import { Plus, CreditCard } from 'lucide-react';
 import { useSubscriptions } from '../hooks/useSubscriptions';
 import { SubscriptionCard } from '../components/subscriptions/SubscriptionCard';
 import { SubscriptionDetail } from '../components/subscriptions/SubscriptionDetail';
