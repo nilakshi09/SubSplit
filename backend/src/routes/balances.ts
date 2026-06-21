@@ -10,7 +10,7 @@ balanceRoutes.use(authGuard);
 // GET /api/groups/:id/balances — all member balances in a group
 balanceRoutes.get('/groups/:id/balances', async (req, res, next) => {
   try {
-    const user = (req as AuthenticatedRequest).user;
+    const user = (req as unknown as AuthenticatedRequest).user;
     const { id: groupId } = req.params;
 
     // Verify user is a member
@@ -84,7 +84,7 @@ balanceRoutes.get('/balances/global', async (req, res, next) => {
 // GET /api/groups/:id/net-settlement — optimized settlement plan
 balanceRoutes.get('/groups/:id/net-settlement', async (req, res, next) => {
   try {
-    const user = (req as AuthenticatedRequest).user;
+    const user = (req as unknown as AuthenticatedRequest).user;
     const { id: groupId } = req.params;
 
     const { data: membership } = await supabaseAdmin
@@ -130,7 +130,7 @@ balanceRoutes.get('/groups/:id/net-settlement', async (req, res, next) => {
 // GET /api/groups/:id/settlements — settlement history for a group
 balanceRoutes.get('/groups/:id/settlements', async (req, res, next) => {
   try {
-    const user = (req as AuthenticatedRequest).user;
+    const user = (req as unknown as AuthenticatedRequest).user;
     const { id: groupId } = req.params;
 
     const { data: membership } = await supabaseAdmin

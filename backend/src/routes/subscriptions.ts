@@ -176,7 +176,7 @@ subscriptionRoutes.delete('/:id', async (req, res, next) => {
 // POST /api/subscriptions/:id/simulate-charge — DEV ONLY: manually trigger a charge for testing
 subscriptionRoutes.post('/:id/simulate-charge', async (req, res, next) => {
   try {
-    const user = (req as AuthenticatedRequest).user;
+    const user = (req as unknown as AuthenticatedRequest).user;
     const { id } = req.params;
 
     const { data: subscription } = await supabaseAdmin

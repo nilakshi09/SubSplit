@@ -71,7 +71,7 @@ settlementRoutes.post('/', async (req, res, next) => {
 // POST /api/settlements/:id/confirm — receiver confirms payment received
 settlementRoutes.post('/:id/confirm', async (req, res, next) => {
   try {
-    const user = (req as AuthenticatedRequest).user;
+    const user = (req as unknown as AuthenticatedRequest).user;
     const { id } = req.params;
 
     const { data: settlement } = await supabaseAdmin
@@ -133,7 +133,7 @@ settlementRoutes.post('/:id/confirm', async (req, res, next) => {
 // POST /api/settlements/:id/reject — receiver rejects (didn't receive payment)
 settlementRoutes.post('/:id/reject', async (req, res, next) => {
   try {
-    const user = (req as AuthenticatedRequest).user;
+    const user = (req as unknown as AuthenticatedRequest).user;
     const { id } = req.params;
 
     const { data: settlement } = await supabaseAdmin
