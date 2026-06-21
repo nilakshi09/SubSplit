@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Hero() {
+  const navigate = useNavigate();
   return (
     <section className="min-h-screen flex items-center justify-center bg-bg px-6 pt-16 pb-24">
       <div className="max-w-4xl mx-auto text-center">
@@ -43,14 +45,14 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
         >
-          <motion.a
-            href="#cta"
+          <motion.button
+            onClick={() => navigate('/login')}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
             className="inline-flex items-center gap-2 bg-mint text-white font-semibold px-8 py-3.5 rounded-full shadow-lg shadow-mint/25 hover:shadow-xl hover:shadow-mint/35 transition-shadow"
           >
             Sign Up Free <ArrowRight size={18} />
-          </motion.a>
+          </motion.button>
           <a
             href="#how-it-works"
             className="inline-flex items-center gap-2 border border-slate-800 text-slate-800 font-semibold px-8 py-3.5 rounded-full hover:bg-slate-800 hover:text-white transition-colors"

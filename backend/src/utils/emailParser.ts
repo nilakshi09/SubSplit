@@ -1,47 +1,68 @@
 /**
- * Email Parser Utility
- * 
- * Parses billing confirmation emails to extract subscription
- * charge information (service name, amount, date).
+ * Email Parser — orchestrates the subscription parsing pipeline.
+ *
+ * Coordinates sender matching, amount extraction, date extraction,
+ * and fingerprint generation to produce a fully parsed subscription
+ * from a raw email.
  */
 
-export interface ParsedCharge {
-  service: string;
+import { findSenderRule } from '../services/parser/senderRegistry.js';
+import { extractAmount } from '../services/parser/amountExtractor.js';
+import { extractBillingDate } from '../services/parser/dateExtractor.js';
+import { generateFingerprint } from '../services/parser/fingerprintGenerator.js';
+
+export interface ParsedSubscription {
+  serviceName: string;
+  serviceIcon: string;
+  category: string;
   amount: number;
   currency: string;
-  date: string;
-  raw: string;
+  billingDate: Date;
+  frequency: 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'unknown';
+  senderEmail: string;
+  emailSubject: string;
+  emailMessageId: string;
+  fingerprint: string;
+  confidence: number;
 }
 
 /**
- * Known subscription patterns for email matching.
+ * Parse a raw email into a structured subscription record.
+ * Returns null if the email doesn't match a known subscription sender
+ * or if no amount can be extracted.
  */
-const KNOWN_PATTERNS = [
-  { regex: /netflix/i, service: 'Netflix' },
-  { regex: /spotify/i, service: 'Spotify' },
-  { regex: /chatgpt|openai/i, service: 'ChatGPT Plus' },
-  { regex: /amazon\s*prime/i, service: 'Amazon Prime' },
-  { regex: /icloud/i, service: 'iCloud' },
-  { regex: /youtube\s*premium/i, service: 'YouTube Premium' },
-];
+export function parseEmail(
+  emailBody: string,
+  senderEmail: string,
+  subject: string,
+  emailDate: Date,
+  messageId: string,
+): ParsedSubscription | null {
+  const senderRule = findSenderRule(senderEmail, subject);
+  if (!senderRule) return null;
 
-/**
- * Parse an email subject/body for subscription charge info.
- */
-export function parseChargeEmail(subject: string, body: string): ParsedCharge | null {
-  for (const pattern of KNOWN_PATTERNS) {
-    if (pattern.regex.test(subject) || pattern.regex.test(body)) {
-      const amountMatch = body.match(/\$([\d,]+\.\d{2})/);
-      if (amountMatch) {
-        return {
-          service: pattern.service,
-          amount: parseFloat(amountMatch[1].replace(',', '')),
-          currency: 'USD',
-          date: new Date().toISOString(),
-          raw: subject,
-        };
-      }
-    }
-  }
-  return null;
+  const extractedAmount = extractAmount(emailBody, senderRule);
+  if (!extractedAmount) return null;
+
+  const billingDate = extractBillingDate(emailBody, emailDate);
+  const fingerprint = generateFingerprint(
+    senderRule.serviceName,
+    extractedAmount.value,
+    extractedAmount.currency,
+  );
+
+  return {
+    serviceName: senderRule.serviceName,
+    serviceIcon: senderRule.serviceIcon,
+    category: senderRule.category,
+    amount: extractedAmount.value,
+    currency: extractedAmount.currency,
+    billingDate,
+    frequency: 'unknown',
+    senderEmail,
+    emailSubject: subject,
+    emailMessageId: messageId,
+    fingerprint,
+    confidence: extractedAmount.confidence,
+  };
 }

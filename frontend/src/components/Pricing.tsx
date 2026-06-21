@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import FadeInOnScroll from './FadeInOnScroll';
 
 const plans = [
@@ -27,6 +28,7 @@ const plans = [
 ];
 
 export default function Pricing() {
+  const navigate = useNavigate();
   return (
     <section id="pricing" className="bg-bg py-24 px-6">
       <div className="max-w-5xl mx-auto">
@@ -64,18 +66,18 @@ export default function Pricing() {
                     </li>
                   ))}
                 </ul>
-                <motion.a
-                  href="#cta"
+                <motion.button
+                  onClick={() => navigate('/login')}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
-                  className={`mt-8 block text-center font-semibold text-sm py-3 rounded-xl transition-colors ${
+                  className={`mt-8 w-full block text-center font-semibold text-sm py-3 rounded-xl transition-colors ${
                     plan.popular
                       ? 'bg-mint text-white shadow-md shadow-mint/25 hover:shadow-lg hover:shadow-mint/30'
                       : 'bg-slate-800 text-white hover:bg-slate-600'
                   }`}
                 >
                   Get Started
-                </motion.a>
+                </motion.button>
               </div>
             </FadeInOnScroll>
           ))}

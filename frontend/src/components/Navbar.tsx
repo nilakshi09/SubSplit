@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <nav className="sticky top-0 z-50 bg-bg/80 backdrop-blur-lg border-b border-slate-200">
@@ -24,14 +26,14 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:block">
-          <motion.a
-            href="#cta"
+          <motion.button
+            onClick={() => navigate('/signup')}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
             className="inline-flex items-center gap-2 bg-mint text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-md shadow-mint/25 hover:shadow-lg hover:shadow-mint/30 transition-shadow"
           >
             Sign Up Free
-          </motion.a>
+          </motion.button>
         </div>
 
         <button
@@ -75,13 +77,13 @@ export default function Navbar() {
               <a href="#faq" onClick={() => setMobileOpen(false)} className="block text-sm text-slate-500 hover:text-slate-800">
                 FAQ
               </a>
-              <a
-                href="#cta"
+              <Link
+                to="/signup"
                 onClick={() => setMobileOpen(false)}
                 className="inline-flex items-center gap-2 bg-mint text-white text-sm font-semibold px-5 py-2.5 rounded-full"
               >
                 Sign Up Free
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}

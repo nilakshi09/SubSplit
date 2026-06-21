@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import FadeInOnScroll from './FadeInOnScroll';
 
 export default function FinalCTA() {
   const [email, setEmail] = useState('');
+  const navigate = useNavigate();
 
   return (
     <section id="cta" className="bg-bg py-24 px-6">
@@ -23,6 +25,7 @@ export default function FinalCTA() {
             className="flex-1 px-4 py-3.5 rounded-xl border border-slate-200 bg-white text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-mint/40 focus:border-mint transition"
           />
           <motion.button
+            onClick={() => navigate('/signup')}
             whileHover={{ scale: 1.03, boxShadow: '0 8px 30px rgba(74,222,128,0.35)' }}
             whileTap={{ scale: 0.98 }}
             className="bg-mint text-white font-semibold text-sm px-6 py-3.5 rounded-xl shadow-md shadow-mint/25 whitespace-nowrap"
