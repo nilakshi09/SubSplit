@@ -11,11 +11,10 @@ export const authRoutes = Router();
 
 // Cookie options shared between set and clear to ensure they match
 function getCookieOptions() {
-  const isProduction = env.NODE_ENV === 'production';
   return {
     httpOnly: true,
-    secure: isProduction,
-    sameSite: (isProduction ? 'strict' : 'lax') as 'strict' | 'lax',
+    secure: true,
+    sameSite: 'none' as const,
     path: '/',
   };
 }
@@ -78,8 +77,11 @@ authRoutes.get('/google/callback', async (req: Request, res: Response, _next: Ne
 
     // Set httpOnly cookie
     res.cookie('token', token, {
-      ...getCookieOptions(),
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
       maxAge: 24 * 60 * 60 * 1000,
+      path: '/',
     });
 
     // Redirect to frontend dashboard
