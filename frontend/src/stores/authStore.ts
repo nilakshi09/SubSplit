@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { api } from '../lib/api';
+import { api, removeToken } from '../lib/api';
 
 export interface User {
   id: string;
@@ -20,8 +20,6 @@ interface AuthState {
   setUser: (user: User | null) => void;
 }
 
-// Track in-flight fetchUser promise to deduplicate concurrent calls.
-// This prevents StrictMode double-mount and App+ProtectedRoute race conditions.
 let fetchPromise: Promise<void> | null = null;
 
 export const useAuthStore = create<AuthState>((set) => ({
@@ -30,13 +28,8 @@ export const useAuthStore = create<AuthState>((set) => ({
   isAuthenticated: false,
 
   fetchUser: async () => {
-    // If a fetch is already in flight, return the existing promise
-    if (fetchPromise) {
-      return fetchPromise;
-    }
-
+    if (fetchPromise) return fetchPromise;
     set({ isLoading: true });
-
     fetchPromise = (async () => {
       try {
         const user = await api.auth.me();
@@ -47,16 +40,12 @@ export const useAuthStore = create<AuthState>((set) => ({
         fetchPromise = null;
       }
     })();
-
     return fetchPromise;
   },
 
   logout: async () => {
-    try {
-      await api.auth.logout();
-    } catch {
-      // Logout API call failed — clear local state anyway
-    }
+    try { await api.auth.logout(); } catch {}
+    removeToken();
     set({ user: null, isAuthenticated: false });
     window.location.href = '/login';
   },

@@ -16,6 +16,7 @@ import { JoinGroupPage } from './pages/JoinGroupPage';
 import { NotificationsPage } from './pages/NotificationsPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { SubscriptionsPage } from './pages/SubscriptionsPage';
+import { AuthCallbackPage } from './pages/AuthCallbackPage';
 
 // Landing page components
 import {
@@ -73,6 +74,7 @@ function AppContent() {
           <Route path="/notifications" element={<ProtectedRoute><NotificationsPage /></ProtectedRoute>} />
           <Route path="/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
           <Route path="/join/:code" element={<JoinGroupPage />} />
+          <Route path="/auth/callback" element={<AuthCallbackPage />} />
           <Route path="*" element={<LandingPage />} />
         </Routes>
       </AnimatePresence>

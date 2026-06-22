@@ -17,12 +17,7 @@ export interface AuthenticatedRequest extends Request {
 export function authGuard(req: Request, _res: Response, next: NextFunction): void {
   console.log('--- AUTH GUARD INVOKED ---', req.originalUrl);
   try {
-    const cookieToken = req.cookies?.token;
-    const headerToken = req.headers.authorization?.replace('Bearer ', '');
-    console.log('--- AUTH GUARD RECEIVED COOKIE? ---', !!cookieToken, 'length:', cookieToken?.length);
-    console.log('--- AUTH GUARD RECEIVED HEADER? ---', !!headerToken);
-    
-    const token = cookieToken || headerToken;
+    const token = req.headers.authorization?.replace('Bearer ', '') || null;
 
     if (!token) {
       console.error('--- AUTH GUARD FAILURE ---', 'No token provided in cookies or headers');
