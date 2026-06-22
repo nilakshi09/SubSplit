@@ -5,12 +5,11 @@ import toast from 'react-hot-toast';
 
 interface SimulateChargeButtonProps {
   subscriptionId: string;
-  subscriptionName: string;
   groupId: string | null;
   onCharged: () => void;
 }
 
-export function SimulateChargeButton({ subscriptionId, subscriptionName, groupId, onCharged }: SimulateChargeButtonProps) {
+export function SimulateChargeButton({ subscriptionId, groupId, onCharged }: SimulateChargeButtonProps) {
   const { simulateCharge } = useBalances();
   const [isCharging, setIsCharging] = useState(false);
 

@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { RefreshCw, Zap, Loader2, HandCoins } from 'lucide-react';
+import { RefreshCw, Zap, HandCoins } from 'lucide-react';
 import { useBalances } from '../../hooks/useBalances';
 import { SettleUpModal } from '../settlements/SettleUpModal';
 
 interface GroupBalanceSectionProps {
   groupId: string;
   currentUserId: string;
-  members: any[];
 }
 
 function formatCurrency(amount: number, currency: string = 'INR'): string {
@@ -16,7 +15,7 @@ function formatCurrency(amount: number, currency: string = 'INR'): string {
   return `${symbol}${Math.abs(amount).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
 }
 
-export function GroupBalanceSection({ groupId, currentUserId, members }: GroupBalanceSectionProps) {
+export function GroupBalanceSection({ groupId, currentUserId }: GroupBalanceSectionProps) {
   const { groupBalances, netSettlements, fetchGroupBalances, fetchNetSettlement } = useBalances();
   const [showSettleUp, setShowSettleUp] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -75,7 +74,6 @@ export function GroupBalanceSection({ groupId, currentUserId, members }: GroupBa
             {balances.map((member, i) => {
               const isCurrentUser = member.userId === currentUserId;
               const isOwes = member.amount > 0;
-              const isOwed = member.amount < 0;
               const isSettled = member.amount === 0;
 
               return (

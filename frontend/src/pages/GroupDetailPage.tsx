@@ -183,7 +183,6 @@ export function GroupDetailPage() {
               <div className="px-5 pb-2 pl-14">
                 <SimulateChargeButton
                   subscriptionId={sub.id}
-                  subscriptionName={sub.service_name || sub.name}
                   groupId={sub.group_id || id || null}
                   onCharged={() => {
                     if (id) {
@@ -411,7 +410,6 @@ export function GroupDetailPage() {
                 <GroupBalanceSection
                   groupId={currentGroup.id}
                   currentUserId={user?.id || ''}
-                  members={currentGroup.members || []}
                 />
               </motion.div>
 
@@ -444,7 +442,6 @@ export function GroupDetailPage() {
             <GroupBalanceSection
               groupId={currentGroup.id}
               currentUserId={user?.id || ''}
-              members={currentGroup.members || []}
             />
           </motion.div>
         )}
