@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Allow: /login
+Disallow: /dashboard
+Disallow: /groups
+Disallow: /subscriptions
+Disallow: /settings
+Disallow: /notifications
+Disallow: /api/
+
+Sitemap: https://sub-split-one.vercel.app/sitemap.xml

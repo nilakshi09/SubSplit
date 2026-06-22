@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import { env } from './config/env.js';
+import { initializeJobs } from './jobs/index.js';
 import { subscriptionRoutes } from './routes/subscriptions.js';
 import { groupRoutes } from './routes/groups.js';
 import { splitRoutes } from './routes/splits.js';
@@ -65,3 +66,6 @@ app.use(globalErrorHandler);
 app.listen(env.PORT, () => {
   console.log(`🚀 SubSplit API running on http://localhost:${env.PORT}`);
 });
+
+// Initialize background jobs
+initializeJobs();

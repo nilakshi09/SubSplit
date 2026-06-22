@@ -1,139 +1,178 @@
-<div align="center">
+# SubSplit — Automatic Subscription Splitting
 
-# 🔀 SubSplit
+> Split shared subscriptions automatically. Connect Gmail, create groups, and let SubSplit handle the math — every month, without anyone lifting a finger.
 
-**Your subscriptions. Split automatically.**
-
-SubSplit reads your billing emails and settles the math with your group — silently, every month, without anyone lifting a finger.
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue.svg)](https://typescriptlang.org)
-[![React](https://img.shields.io/badge/React-18.3-61DAFB.svg)](https://react.dev)
-[![Supabase](https://img.shields.io/badge/Supabase-Backend-3ECF8E.svg)](https://supabase.com)
-
----
-
-</div>
+## 🌐 Live Demo
+- **App:** https://sub-split-one.vercel.app
+- **API:** https://subsplit-backend.onrender.com/api/health
 
 ## ✨ Features
-
-- 📧 **Gmail Integration** — Automatically detects subscription charges from billing emails
-- 👥 **Group Management** — Create groups and assign members to shared subscriptions
-- 💸 **Auto-Split** — Calculates each member's share and sends payment reminders
-- 🔗 **One-Tap Payments** — Generates Venmo, PayPal, and UPI payment links
-- 🔒 **Privacy-First** — Only billing line-items are stored, never email content
-
-## 🏗️ Project Structure
-
-```
-SubSplit/
-├── frontend/                # React + Vite frontend
-│   ├── src/
-│   │   ├── components/      # Reusable UI components
-│   │   │   ├── Navbar.tsx
-│   │   │   ├── Hero.tsx
-│   │   │   ├── Problem.tsx
-│   │   │   ├── HowItWorks.tsx
-│   │   │   ├── SubscriptionShowcase.tsx
-│   │   │   ├── EmotionalAnchor.tsx
-│   │   │   ├── Pricing.tsx
-│   │   │   ├── FAQ.tsx
-│   │   │   ├── FinalCTA.tsx
-│   │   │   ├── Footer.tsx
-│   │   │   └── FadeInOnScroll.tsx
-│   │   ├── data/            # Constants and static data
-│   │   ├── App.tsx          # Root component
-│   │   ├── main.tsx         # Entry point
-│   │   └── index.css        # Global styles
-│   ├── index.html
-│   ├── tailwind.config.js
-│   ├── vite.config.ts
-│   └── package.json
-│
-├── backend/                 # Express + TypeScript API
-│   ├── src/
-│   │   ├── config/          # Supabase client configuration
-│   │   ├── routes/          # API route handlers
-│   │   │   ├── auth.ts
-│   │   │   ├── subscriptions.ts
-│   │   │   └── groups.ts
-│   │   ├── middleware/       # Auth & validation middleware
-│   │   ├── utils/           # Email parser & helpers
-│   │   └── index.ts         # Server entry point
-│   ├── tsconfig.json
-│   └── package.json
-│
-├── .gitignore
-├── LICENSE
-└── README.md
-```
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) v18+
-- [npm](https://www.npmjs.com/) v9+
-- [Supabase](https://supabase.com/) account (for backend)
-
-### Frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-The app will be available at `http://localhost:5173`
-
-### Backend
-
-```bash
-cd backend
-cp .env.example .env     # Configure your environment variables
-npm install
-npm run dev
-```
-
-The API will be available at `http://localhost:3001`
+- **Gmail Integration** — Automatically detects billing emails from 35+ services
+- **Smart Parsing** — Extracts service name, amount, and billing date
+- **Group Management** — Create groups, invite friends via link
+- **Automatic Splitting** — Equal, percentage, or fixed splits
+- **Balance Tracking** — Real-time balance updates on every charge
+- **Settlement Flow** — One-tap payment via UPI, Venmo, or PayPal
+- **Smart Notifications** — Charge alerts, payment reminders, escalating nudges
+- **Background Automation** — Cron jobs for reminders and cancellation detection
 
 ## 🛠️ Tech Stack
 
-| Layer      | Technology                                                    |
-| ---------- | ------------------------------------------------------------- |
-| Frontend   | React 18, TypeScript, Vite, Tailwind CSS, Framer Motion       |
-| Backend    | Node.js, Express, TypeScript                                  |
-| Database   | Supabase (PostgreSQL)                                         |
-| Auth       | Supabase Auth                                                 |
-| Deployment | Vercel (frontend) + Railway/Render (backend)                  |
+### Frontend
+| Technology | Purpose |
+|-----------|---------|
+| React 18 + Vite | UI framework & build tool |
+| TypeScript | Type safety |
+| Tailwind CSS | Styling |
+| Framer Motion | Animations |
+| Zustand | State management |
+| React Router v6 | Client-side routing |
 
-## 📡 API Endpoints
+### Backend
+| Technology | Purpose |
+|-----------|---------|
+| Node.js + Express | API server |
+| TypeScript | Type safety |
+| Supabase (PostgreSQL) | Database + Auth |
+| Google OAuth 2.0 | Authentication |
+| Gmail API | Email reading |
+| JWT | Session management |
+| node-cron | Background jobs |
 
-| Method   | Endpoint                | Description               |
-| -------- | ----------------------- | ------------------------- |
-| `GET`    | `/api/health`           | Health check              |
-| `POST`   | `/api/auth/signup`      | Create a new account      |
-| `POST`   | `/api/auth/login`       | Login to existing account |
-| `GET`    | `/api/subscriptions`    | List all subscriptions    |
-| `POST`   | `/api/subscriptions`    | Add a new subscription    |
-| `DELETE` | `/api/subscriptions/:id`| Remove a subscription     |
-| `GET`    | `/api/groups`           | List all groups           |
-| `POST`   | `/api/groups`           | Create a new group        |
+### Infrastructure
+| Service | Purpose |
+|---------|---------|
+| Vercel | Frontend hosting |
+| Render | Backend hosting |
+| Supabase | Database + RLS |
+| Google Cloud | OAuth + Gmail API |
 
-## 🤝 Contributing
+## 🏗️ Architecture
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   React + Vite  │────▶│  Node + Express │────▶│    Supabase     │
+│   (Vercel CDN)  │     │  (Render.com)   │     │  (PostgreSQL)   │
+└─────────────────┘     └────────┬────────┘     └─────────────────┘
+                                 │
+                    ┌────────────┼────────────┐
+                    ▼            ▼            ▼
+                Gmail API    node-cron    Notifications
+               (OAuth 2.0)  (Background   (In-app alerts)
+                               Jobs)
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m 'Add amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
+## 📁 Project Structure
+SubSplit/
+├── frontend/          # React + Vite + TypeScript
+│   └── src/
+│       ├── components/  # UI components
+│       ├── pages/       # Route pages
+│       ├── stores/      # Zustand state
+│       ├── hooks/       # Custom hooks
+│       └── lib/         # API client
+│
+├── backend/           # Node.js + Express + TypeScript
+│   └── src/
+│       ├── routes/      # API endpoints
+│       ├── services/    # Business logic
+│       │   ├── gmail/   # Email ingestion
+│       │   ├── parser/  # Email parsing engine
+│       │   ├── balance/ # Balance calculations
+│       │   └── notification/ # Alerts
+│       ├── jobs/        # Background cron jobs
+│       └── middleware/  # Auth, rate limiting
+│
+└── docs/              # Documentation
 
-## 📄 License
+## 🚀 Local Development
 
-This project is licensed under the MIT License — see the [LICENSE](./LICENSE) file for details.
+### Prerequisites
+- Node.js 18+
+- npm or yarn
+- Supabase account
+- Google Cloud Console project
+
+### Setup
+
+1. Clone the repository
+```bash
+git clone https://github.com/nilakshi09/SubSplit.git
+cd SubSplit
+```
+
+2. Backend setup
+```bash
+cd backend
+cp .env.example .env
+# Fill in your environment variables
+npm install
+npm run dev
+```
+
+3. Frontend setup
+```bash
+cd frontend
+cp .env.example .env
+# Add VITE_API_URL=http://localhost:3001
+npm install
+npm run dev
+```
+
+### Environment Variables
+
+**Backend `.env`:**
+```env
+PORT=3001
+NODE_ENV=development
+FRONTEND_URL=http://localhost:5173
+SUPABASE_URL=your_supabase_url
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRY=24h
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+GOOGLE_REDIRECT_URI=http://localhost:3001/api/auth/google/callback
+TOKEN_ENCRYPTION_KEY=your_encryption_key
+```
+
+**Frontend `.env`:**
+```env
+VITE_API_URL=http://localhost:3001
+```
+
+## 📊 Database Schema
+
+Key tables:
+- `users` — User profiles + Gmail tokens (encrypted)
+- `subscriptions` — Detected/manual subscriptions
+- `groups` — Friend groups
+- `group_members` — Group membership
+- `split_rules` — How costs are divided
+- `balances` — Running balance per user per group
+- `settlements` — Payment records
+- `notifications` — In-app alerts
+- `charge_events` — Billing history
+
+## 🔒 Security
+- OAuth tokens encrypted with AES-256 at rest
+- JWT authentication with 24h expiry
+- Row Level Security (RLS) on all Supabase tables
+- Rate limiting: 100 req/min per user
+- CORS whitelist for production domains
+- No raw email content stored — only extracted metadata
+
+## 🤖 Background Jobs
+| Job | Schedule | Purpose |
+|-----|----------|---------|
+| Email Poller | Every 5 min | Scan Gmail for new billing emails |
+| Reminder Sender | Every hour | Send payment reminders |
+| Cancellation Detector | Daily 6 AM | Flag unused subscriptions |
+| Monthly Summary | 1st of month | Send monthly balance report |
+
+## 📱 Screenshots
+> Dashboard, Groups, Subscriptions, Settings pages
+
+## 🙏 Acknowledgments
+Built by **Nilakshi Rahangdale** — B.Tech CS, PIEMR Indore
 
 ---
 
-<div align="center">
-  <sub>Made for friend groups everywhere. 💚</sub>
-</div>
+Made with ❤️ using React, Node.js, and Supabase

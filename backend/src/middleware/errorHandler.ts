@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { ZodError } from 'zod';
 import { AppError } from '../utils/errors.js';
 import { env } from '../config/env.js';
+import { logger } from '../utils/logger.js';
 
 export function globalErrorHandler(
   err: Error,
@@ -34,7 +35,7 @@ export function globalErrorHandler(
   }
 
   // Handle unexpected errors
-  console.error('Unexpected error:', err);
+  logger.error('Unexpected error', err);
 
   res.status(500).json({
     error: {
