@@ -27,6 +27,7 @@ authRoutes.get('/google', (_req: Request, res: Response) => {
 
 // GET /api/auth/google/callback — Handle OAuth callback
 authRoutes.get('/google/callback', async (req: Request, res: Response, _next: NextFunction) => {
+  console.log('--- OAUTH CALLBACK ENTERED ---');
   try {
     const code = req.query.code as string;
 
@@ -74,6 +75,7 @@ authRoutes.get('/google/callback', async (req: Request, res: Response, _next: Ne
       env.JWT_SECRET,
       { expiresIn: env.JWT_EXPIRY as jwt.SignOptions['expiresIn'] },
     );
+    console.log('--- JWT CREATED ---', { sub: user.id, email: user.email });
 
     // Set httpOnly cookie
     res.cookie('token', token, {
@@ -83,8 +85,10 @@ authRoutes.get('/google/callback', async (req: Request, res: Response, _next: Ne
       maxAge: 24 * 60 * 60 * 1000,
       path: '/',
     });
+    console.log('--- COOKIE SET ---', 'token length:', token.length);
 
     // Redirect to frontend dashboard
+    console.log(`--- REDIRECT TRIGGERED --- to ${env.FRONTEND_URL}/dashboard`);
     res.redirect(`${env.FRONTEND_URL}/dashboard`);
   } catch (error) {
     console.error('OAuth callback error:', error);
