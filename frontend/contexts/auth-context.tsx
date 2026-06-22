@@ -15,7 +15,7 @@ export interface User {
 interface AuthContextType {
   user: User | null
   isLoading: boolean
-  login: (token: string, user: User) => void
+  login: (user: User) => void
   logout: () => void
   updateUser: (data: Partial<User>) => void
 }
@@ -27,30 +27,31 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Attempt to load user from local storage or validate token on mount
+    // Attempt to validate token on mount
     const checkAuth = async () => {
-      const token = localStorage.getItem('spotbot_token')
-      if (token) {
-        try {
-          const userData = await api.get<User>('/api/users/me')
-          setUser(userData)
-        } catch (error) {
-          localStorage.removeItem('spotbot_token')
-        }
+      try {
+        const userData = await api.auth.me()
+        setUser(userData as unknown as User)
+      } catch (error) {
+        setUser(null)
+      } finally {
+        setIsLoading(false)
       }
-      setIsLoading(false)
     }
 
     checkAuth()
   }, [])
 
-  const login = (token: string, userData: User) => {
-    localStorage.setItem('spotbot_token', token)
+  const login = (userData: User) => {
     setUser(userData)
   }
 
-  const logout = () => {
-    localStorage.removeItem('spotbot_token')
+  const logout = async () => {
+    try {
+      await api.auth.logout()
+    } catch (e) {
+      // ignore
+    }
     setUser(null)
   }
 
