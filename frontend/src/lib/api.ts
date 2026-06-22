@@ -23,7 +23,10 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
 
   if (response.status === 401) {
     removeToken();
-    window.location.href = '/login';
+    // Do not force a hard redirect for the initial auth check to avoid redirect loops
+    if (endpoint !== '/api/auth/me') {
+      window.location.href = '/login';
+    }
     throw new Error('Unauthorized');
   }
 

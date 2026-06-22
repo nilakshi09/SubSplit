@@ -7,21 +7,16 @@ import { useAuth } from '../hooks/useAuth';
 import { api } from '../lib/api';
 
 export function LoginPage() {
-  const { isAuthenticated, isLoading, fetchUser } = useAuth();
+  const { status } = useAuth();
   const navigate = useNavigate();
   const toastShown = useRef(false);
 
-  // On mount, check if user is already authenticated
-  useEffect(() => {
-    fetchUser();
-  }, []);
-
   // Redirect authenticated users to dashboard
   useEffect(() => {
-    if (!isLoading && isAuthenticated) {
+    if (status === 'authenticated') {
       navigate('/dashboard', { replace: true });
     }
-  }, [isLoading, isAuthenticated, navigate]);
+  }, [status, navigate]);
 
   // Show error toast if redirected back from failed OAuth — guard against StrictMode double-fire
   useEffect(() => {
@@ -35,7 +30,7 @@ export function LoginPage() {
   }, []);
 
   // Show nothing while checking auth to avoid flash
-  if (isLoading) {
+  if (status === 'loading') {
     return (
       <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
         <div className="w-8 h-8 border-2 border-teal-400 border-t-transparent rounded-full animate-spin" />

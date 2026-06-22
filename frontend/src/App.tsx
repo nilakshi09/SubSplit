@@ -51,12 +51,12 @@ function LandingPage() {
 
 function AppContent() {
   const fetchUser = useAuthStore(state => state.fetchUser);
-  const isAuthenticated = useAuthStore(state => state.isAuthenticated);
+  const status = useAuthStore(state => state.status);
   const location = useLocation();
   
   useEffect(() => { fetchUser(); }, []);
   
-  const showMobileNav = isAuthenticated && 
+  const showMobileNav = status === 'authenticated' && 
     location.pathname !== '/' && 
     location.pathname !== '/login';
 

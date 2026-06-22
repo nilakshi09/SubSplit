@@ -11,10 +11,11 @@ export interface User {
   onboardingStep: number;
 }
 
+export type AuthStatus = 'loading' | 'authenticated' | 'unauthenticated';
+
 interface AuthState {
   user: User | null;
-  isLoading: boolean;
-  isAuthenticated: boolean;
+  status: AuthStatus;
   fetchUser: () => Promise<void>;
   logout: () => Promise<void>;
   setUser: (user: User | null) => void;
@@ -22,20 +23,27 @@ interface AuthState {
 
 let fetchPromise: Promise<void> | null = null;
 
-export const useAuthStore = create<AuthState>((set) => ({
+export const useAuthStore = create<AuthState>((set, get) => ({
   user: null,
-  isLoading: true,
-  isAuthenticated: false,
+  status: 'loading',
 
   fetchUser: async () => {
+    // If already authenticated, or a fetch is currently running, don't revert to loading
     if (fetchPromise) return fetchPromise;
-    set({ isLoading: true });
+    
+    // Only set loading if we are truly uninitialized
+    if (get().status === 'unauthenticated' || get().status === 'loading') {
+      if (get().status !== 'loading') {
+        set({ status: 'loading' });
+      }
+    }
+
     fetchPromise = (async () => {
       try {
         const user = await api.auth.me();
-        set({ user, isAuthenticated: true, isLoading: false });
+        set({ user, status: 'authenticated' });
       } catch {
-        set({ user: null, isAuthenticated: false, isLoading: false });
+        set({ user: null, status: 'unauthenticated' });
       } finally {
         fetchPromise = null;
       }
@@ -46,9 +54,9 @@ export const useAuthStore = create<AuthState>((set) => ({
   logout: async () => {
     try { await api.auth.logout(); } catch {}
     removeToken();
-    set({ user: null, isAuthenticated: false });
+    set({ user: null, status: 'unauthenticated' });
     window.location.href = '/login';
   },
 
-  setUser: (user) => set({ user, isAuthenticated: !!user }),
+  setUser: (user) => set({ user, status: user ? 'authenticated' : 'unauthenticated' }),
 }));
