@@ -240,3 +240,34 @@ subscriptionRoutes.post('/:id/simulate-charge', async (req, res, next) => {
     next(err);
   }
 });
+
+// PUT /api/subscriptions/:id — update subscription status
+subscriptionRoutes.put('/:id', async (req, res, next) => {
+  try {
+    const user = (req as unknown as AuthenticatedRequest).user;
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const { data: sub } = await supabaseAdmin
+      .from('subscriptions')
+      .select('id')
+      .eq('id', id)
+      .eq('owner_id', user.id)
+      .single();
+
+    if (!sub) throw new NotFoundError('Subscription');
+
+    const { data, error } = await supabaseAdmin
+      .from('subscriptions')
+      .update({ status, updated_at: new Date().toISOString() })
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    res.json({ subscription: data });
+  } catch (err) {
+    next(err);
+  }
+});

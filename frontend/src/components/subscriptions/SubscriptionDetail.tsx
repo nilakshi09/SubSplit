@@ -168,9 +168,8 @@ export function SubscriptionDetail({ subscription, onClose }: SubscriptionDetail
               <div className="space-y-3">
                 <p className="text-sm text-[#718096]">Not assigned to a group</p>
                 <button
-                  onClick={() => toast('Coming soon!', { icon: '🚧' })}
-                  className="px-4 py-2 rounded-lg bg-white border border-[#E2E8F0] text-[#2D3748] text-sm font-medium cursor-not-allowed"
-                  disabled
+                  onClick={() => navigate('/groups')}
+                  className="px-4 py-2 rounded-lg bg-white border border-[#E2E8F0] text-[#2D3748] text-sm font-medium"
                 >
                   Assign to Group
                 </button>
@@ -187,7 +186,7 @@ export function SubscriptionDetail({ subscription, onClose }: SubscriptionDetail
             <button
               onClick={async () => {
                 try {
-                  await api.delete(`/api/subscriptions/${subscription.id}`);
+                  await api.put(`/api/subscriptions/${subscription.id}`, { status: 'cancelled' });
                   toast.success('Subscription cancelled');
                   onClose();
                   // Refresh subscriptions list
