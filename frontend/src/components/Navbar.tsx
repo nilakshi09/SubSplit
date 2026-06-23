@@ -27,7 +27,7 @@ export default function Navbar() {
 
         <div className="hidden md:block">
           <motion.button
-            onClick={() => navigate('/signup')}
+            onClick={() => navigate('/login')}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
             className="inline-flex items-center gap-2 bg-mint text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-md shadow-mint/25 hover:shadow-lg hover:shadow-mint/30 transition-shadow"
@@ -78,7 +78,7 @@ export default function Navbar() {
                 FAQ
               </a>
               <Link
-                to="/signup"
+                to="/login"
                 onClick={() => setMobileOpen(false)}
                 className="inline-flex items-center gap-2 bg-mint text-white text-sm font-semibold px-5 py-2.5 rounded-full"
               >
