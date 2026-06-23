@@ -3,8 +3,8 @@ import { parseEmail, ParsedSubscription } from '../../utils/emailParser.js';
 import { supabaseAdmin } from '../../utils/supabase.js';
 
 const BILLING_QUERY = [
-  'subject:(receipt OR invoice OR payment OR billing OR subscription OR charge OR renewal OR "payment confirmation" OR "order confirmation")',
-  'NOT subject:(shipping OR delivered OR "out for delivery" OR refund)',
+  'subject:(receipt OR invoice OR payment OR billing OR subscription OR charge OR renewal OR "payment confirmation" OR "order confirmation" OR netflix OR spotify OR amazon OR "amount charged" OR "thank you for your payment")',
+  'NOT subject:(shipping OR delivered OR "out for delivery")',
   'newer_than:6m',
 ].join(' ');
 
