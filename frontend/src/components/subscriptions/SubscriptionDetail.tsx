@@ -21,6 +21,7 @@ interface SubscriptionDetailProps {
     billing_day: number | null;
   };
   onClose: () => void;
+  onRefresh?: () => void;
 }
 
 function getStatusVariant(status: string): 'success' | 'warning' | 'gray' {
@@ -73,7 +74,7 @@ function formatFrequency(frequency: string): string {
   }
 }
 
-export function SubscriptionDetail({ subscription, onClose }: SubscriptionDetailProps) {
+export function SubscriptionDetail({ subscription, onClose, onRefresh }: SubscriptionDetailProps) {
   const navigate = useNavigate();
 
   return (
@@ -189,8 +190,7 @@ export function SubscriptionDetail({ subscription, onClose }: SubscriptionDetail
                   await api.put(`/api/subscriptions/${subscription.id}`, { status: 'cancelled' });
                   toast.success('Subscription cancelled');
                   onClose();
-                  // Refresh subscriptions list
-                  window.location.reload();
+                  if (onRefresh) onRefresh();
                 } catch (error) {
                   toast.error('Failed to cancel subscription');
                 }

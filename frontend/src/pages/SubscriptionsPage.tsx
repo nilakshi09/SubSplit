@@ -158,6 +158,10 @@ export function SubscriptionsPage() {
               billing_day: selectedSubscription.billing_day ?? null,
             }}
             onClose={() => setSelectedSubscription(null)}
+            onRefresh={() => {
+              fetchSubscriptions();
+              setSelectedSubscription(null);
+            }}
           />
         )}
       </AnimatePresence>
