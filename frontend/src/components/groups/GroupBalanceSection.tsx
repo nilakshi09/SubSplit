@@ -45,18 +45,18 @@ export function GroupBalanceSection({ groupId, currentUserId }: GroupBalanceSect
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.25 }}
-        className="bg-[#1a1a1a] rounded-xl border border-white/10 overflow-hidden"
+        className="bg-white rounded-xl border border-[#E2E8F0] overflow-hidden"
       >
         {/* Header */}
-        <div className="px-5 py-4 border-b border-white/5 flex items-center justify-between">
-          <h3 className="text-white font-semibold text-sm flex items-center gap-2">
-            <HandCoins className="w-4 h-4 text-teal-400" />
+        <div className="px-5 py-4 border-b border-[#E2E8F0] flex items-center justify-between">
+          <h3 className="text-[#2D3748] font-semibold text-sm flex items-center gap-2">
+            <HandCoins className="w-4 h-4 text-[#16a34a]" />
             Balances
           </h3>
           <button
             onClick={handleRefresh}
             disabled={isRefreshing}
-            className="text-gray-500 hover:text-white transition-colors p-1.5 rounded-lg hover:bg-white/5 cursor-pointer disabled:opacity-50"
+            className="text-[#718096] hover:text-[#2D3748] transition-colors p-1.5 rounded-lg hover:bg-[#F7F7F5] cursor-pointer disabled:opacity-50"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin' : ''}`} />
           </button>
@@ -65,9 +65,9 @@ export function GroupBalanceSection({ groupId, currentUserId }: GroupBalanceSect
         {/* Member Balances */}
         {balances.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-10 text-center px-4">
-            <HandCoins className="w-8 h-8 text-gray-600 mb-2" />
-            <p className="text-gray-400 text-sm font-medium">No balance data yet</p>
-            <p className="text-gray-600 text-xs mt-1">Simulate a charge to generate balances</p>
+            <HandCoins className="w-8 h-8 text-[#718096] mb-2" />
+            <p className="text-[#718096] text-sm font-medium">No balance data yet</p>
+            <p className="text-[#718096] text-xs mt-1">Simulate a charge to generate balances</p>
           </div>
         ) : (
           <div className="divide-y divide-white/5">
@@ -87,25 +87,25 @@ export function GroupBalanceSection({ groupId, currentUserId }: GroupBalanceSect
                   {/* Avatar */}
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0 ${
                     isCurrentUser
-                      ? 'bg-gradient-to-br from-teal-500/30 to-teal-600/15 border border-teal-500/30 text-teal-400'
-                      : 'bg-gradient-to-br from-white/10 to-white/5 border border-white/10 text-gray-300'
+                      ? 'bg-gradient-to-br from-teal-500/30 to-teal-600/15 border border-[#4ADE80]/50 text-[#16a34a]'
+                      : 'bg-gradient-to-br from-white/10 to-white/5 border border-[#E2E8F0] text-[#718096]'
                   }`}>
                     {member.name.charAt(0).toUpperCase()}
                   </div>
 
                   {/* Name */}
                   <div className="flex-1 min-w-0">
-                    <p className={`text-sm truncate ${isCurrentUser ? 'text-white font-bold' : 'text-white font-medium'}`}>
+                    <p className={`text-sm truncate ${isCurrentUser ? 'text-[#2D3748] font-bold' : 'text-[#2D3748] font-medium'}`}>
                       {member.name}
                       {isCurrentUser && (
-                        <span className="text-teal-400 text-xs ml-1.5 font-semibold">(you)</span>
+                        <span className="text-[#16a34a] text-xs ml-1.5 font-semibold">(you)</span>
                       )}
                     </p>
                   </div>
 
                   {/* Amount */}
                   <span className={`text-sm font-bold flex-shrink-0 ${
-                    isSettled ? 'text-gray-400' : isOwes ? 'text-orange-400' : 'text-green-400'
+                    isSettled ? 'text-[#718096]' : isOwes ? 'text-orange-400' : 'text-green-400'
                   }`}>
                     {isSettled
                       ? 'Settled'
@@ -121,10 +121,10 @@ export function GroupBalanceSection({ groupId, currentUserId }: GroupBalanceSect
 
         {/* Net Settlements */}
         {nets.length > 0 && (
-          <div className="border-t border-white/5">
+          <div className="border-t border-[#E2E8F0]">
             <div className="px-5 py-3 flex items-center gap-2">
               <Zap className="w-3.5 h-3.5 text-amber-400" />
-              <span className="text-white text-xs font-semibold">Suggested Settlements</span>
+              <span className="text-[#2D3748] text-xs font-semibold">Suggested Settlements</span>
             </div>
             <div className="px-5 pb-3 space-y-1.5">
               {nets.map((net, i) => (
@@ -135,11 +135,11 @@ export function GroupBalanceSection({ groupId, currentUserId }: GroupBalanceSect
                   transition={{ delay: 0.04 * i }}
                   className="flex items-center gap-2 text-xs bg-white/[0.03] rounded-lg px-3 py-2"
                 >
-                  <span className="text-white font-medium">{net.from.name}</span>
-                  <span className="text-gray-500">→</span>
-                  <span className="text-white font-medium">{net.to.name}</span>
-                  <span className="text-gray-500">—</span>
-                  <span className="text-teal-400 font-bold">{formatCurrency(net.amount)}</span>
+                  <span className="text-[#2D3748] font-medium">{net.from.name}</span>
+                  <span className="text-[#718096]">→</span>
+                  <span className="text-[#2D3748] font-medium">{net.to.name}</span>
+                  <span className="text-[#718096]">—</span>
+                  <span className="text-[#16a34a] font-bold">{formatCurrency(net.amount)}</span>
                 </motion.div>
               ))}
             </div>
@@ -151,7 +151,7 @@ export function GroupBalanceSection({ groupId, currentUserId }: GroupBalanceSect
           <div className="px-5 pb-4 pt-2">
             <button
               onClick={() => setShowSettleUp(true)}
-              className="w-full bg-teal-500 hover:bg-teal-400 text-white font-semibold text-sm py-2.5 rounded-lg transition-colors cursor-pointer flex items-center justify-center gap-2"
+              className="w-full bg-[#4ADE80] hover:bg-teal-400 text-[#2D3748] font-semibold text-sm py-2.5 rounded-lg transition-colors cursor-pointer flex items-center justify-center gap-2"
             >
               <HandCoins className="w-4 h-4" />
               Settle Up

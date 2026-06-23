@@ -25,7 +25,7 @@ export function AppHeader() {
   };
 
   return (
-    <header className="bg-[#1a1a1a] border-b border-white/10 sticky top-0 z-50">
+    <header className="bg-white border-b border-[#E2E8F0] sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Left: Logo + Nav */}
         <div className="flex items-center">
@@ -34,10 +34,10 @@ export function AppHeader() {
             onClick={() => navigate('/dashboard')}
             className="flex items-center gap-2 cursor-pointer group"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center group-hover:shadow-lg group-hover:shadow-teal-500/20 transition-shadow">
-              <SplitSquareHorizontal className="w-4 h-4 text-white" />
+            <div className="w-8 h-8 rounded-lg bg-[#4ADE80]/10 flex items-center justify-center group-hover:shadow-sm transition-shadow">
+              <SplitSquareHorizontal className="w-4 h-4 text-[#4ADE80]" />
             </div>
-            <span className="text-lg font-bold text-white tracking-tight">
+            <span className="text-lg font-bold text-[#2D3748] tracking-tight">
               SubSplit
             </span>
           </button>
@@ -54,14 +54,14 @@ export function AppHeader() {
                 >
                   <link.icon
                     className={`w-4 h-4 transition-colors ${
-                      active ? 'text-teal-400' : 'text-gray-400 group-hover:text-white'
+                      active ? 'text-[#2D3748]' : 'text-[#718096] group-hover:text-[#2D3748]'
                     }`}
                   />
                   <span
                     className={`text-sm font-medium transition-colors ${
                       active
-                        ? 'text-teal-400'
-                        : 'text-gray-400 hover:text-white'
+                        ? 'text-[#2D3748]'
+                        : 'text-[#718096] hover:text-[#2D3748]'
                     }`}
                   >
                     {link.label}
@@ -70,7 +70,7 @@ export function AppHeader() {
                   {active && (
                     <motion.div
                       layoutId="nav-underline"
-                      className="absolute -bottom-[19px] left-0 right-0 h-[2px] bg-teal-400 rounded-full"
+                      className="absolute -bottom-[19px] left-0 right-0 h-[2px] bg-[#4ADE80] rounded-full"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -88,20 +88,20 @@ export function AppHeader() {
               <img
                 src={user.avatarUrl}
                 alt={user.name}
-                className="w-8 h-8 rounded-full object-cover ring-2 ring-white/10"
+                className="w-8 h-8 rounded-full object-cover ring-2 ring-[#E2E8F0]"
               />
             ) : (
-              <div className="w-8 h-8 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-400 text-sm font-semibold">
+              <div className="w-8 h-8 rounded-full bg-[#4ADE80]/20 flex items-center justify-center text-[#16a34a] text-sm font-semibold">
                 {userInitial}
               </div>
             )}
-            <span className="text-sm text-gray-300 font-medium hidden sm:block">
+            <span className="text-sm text-[#718096] font-medium hidden sm:block">
               {user?.name}
             </span>
           </div>
           <button
             onClick={logout}
-            className="flex items-center gap-1.5 text-gray-400 hover:text-white text-sm transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 text-[#718096] hover:text-[#2D3748] text-sm transition-colors cursor-pointer"
           >
             <LogOut className="w-4 h-4" />
             <span className="hidden sm:inline">Logout</span>

@@ -21,10 +21,10 @@ export function AuthCallbackPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0f0f0f] flex items-center justify-center">
+    <div className="min-h-screen bg-[#F7F7F5] flex items-center justify-center">
       <div className="text-center">
         <div className="animate-spin w-8 h-8 border-2 border-teal-500 border-t-transparent rounded-full mx-auto mb-4" />
-        <p className="text-gray-400 text-sm">Signing you in...</p>
+        <p className="text-[#718096] text-sm">Signing you in...</p>
       </div>
     </div>
   );

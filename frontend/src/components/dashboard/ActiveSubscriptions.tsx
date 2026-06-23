@@ -55,7 +55,7 @@ export function ActiveSubscriptions() {
     >
       {/* Header */}
       <div className="flex items-center gap-3 mb-4">
-        <h2 className="text-lg font-semibold text-white">Active Subscriptions</h2>
+        <h2 className="text-lg font-semibold text-[#2D3748]">Active Subscriptions</h2>
         {active.length > 0 && (
           <span className="bg-emerald-500/15 text-emerald-400 text-xs font-semibold px-2 py-0.5 rounded-full">
             {active.length}
@@ -67,7 +67,7 @@ export function ActiveSubscriptions() {
       {isLoading && (
         <div className="grid gap-3">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="bg-[#1a1a1a] rounded-xl p-4 border border-white/10">
+            <div key={i} className="bg-white rounded-xl p-4 border border-[#E2E8F0]">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-3">
                   <Skeleton className="w-10 h-10 rounded-lg" />
@@ -89,7 +89,7 @@ export function ActiveSubscriptions() {
 
       {/* Empty state */}
       {!isLoading && active.length === 0 && (
-        <div className="bg-[#1a1a1a] rounded-xl border border-white/10 overflow-hidden">
+        <div className="bg-white rounded-xl border border-[#E2E8F0] overflow-hidden">
           <EmptyState
             icon={<CreditCard className="w-10 h-10" />}
             title="No active subscriptions yet"
@@ -112,12 +112,12 @@ export function ActiveSubscriptions() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="mt-4 bg-[#1a1a1a] rounded-xl p-4 border border-white/10 flex items-center justify-between"
+            className="mt-4 bg-white rounded-xl p-4 border border-[#E2E8F0] flex items-center justify-between"
           >
-            <span className="text-sm text-gray-400 font-medium">Est. Monthly Total</span>
-            <span className="text-xl font-bold text-teal-400">
+            <span className="text-sm text-[#718096] font-medium">Est. Monthly Total</span>
+            <span className="text-xl font-bold text-[#16a34a]">
               {formatCurrencyTotal(monthlyTotal, primaryCurrency)}
-              <span className="text-xs text-gray-500 font-normal ml-1">/mo</span>
+              <span className="text-xs text-[#718096] font-normal ml-1">/mo</span>
             </span>
           </motion.div>
         </>

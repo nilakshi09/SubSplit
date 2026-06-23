@@ -13,7 +13,7 @@ export function NotificationsPage() {
 
   return (
     <PageWrapper>
-      <div className="min-h-screen bg-[#0f0f0f]">
+      <div className="min-h-screen bg-[#F7F7F5]">
         <AppHeader />
         <main className="max-w-2xl mx-auto px-6 py-8 pb-20 md:pb-8">
         <NotificationList />

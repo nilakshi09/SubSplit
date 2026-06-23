@@ -40,7 +40,7 @@ export function JoinGroupPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0f0f0f] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#F7F7F5] flex items-center justify-center p-4">
       <motion.div
         initial={{ opacity: 0, y: 20, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -50,30 +50,30 @@ export function JoinGroupPage() {
         {/* Logo */}
         <div className="flex items-center justify-center gap-2 mb-8">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center">
-            <SplitSquareHorizontal className="w-5 h-5 text-white" />
+            <SplitSquareHorizontal className="w-5 h-5 text-[#2D3748]" />
           </div>
-          <span className="text-xl font-bold text-white tracking-tight">SubSplit</span>
+          <span className="text-xl font-bold text-[#2D3748] tracking-tight">SubSplit</span>
         </div>
 
         {/* Card */}
-        <div className="bg-[#1a1a1a] rounded-2xl p-6 border border-white/10 shadow-2xl text-center">
+        <div className="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-2xl text-center">
           {/* Idle state */}
           {status === 'idle' && (
             <>
               <div className="w-14 h-14 rounded-full bg-teal-500/15 flex items-center justify-center mx-auto mb-4">
-                <Users className="w-7 h-7 text-teal-400" />
+                <Users className="w-7 h-7 text-[#16a34a]" />
               </div>
-              <h1 className="text-white font-bold text-xl mb-2">You've been invited!</h1>
-              <p className="text-gray-400 text-sm mb-6">
+              <h1 className="text-[#2D3748] font-bold text-xl mb-2">You've been invited!</h1>
+              <p className="text-[#718096] text-sm mb-6">
                 Someone wants you to join their group on SubSplit to start splitting subscriptions together.
               </p>
               <button
                 onClick={handleJoin}
-                className="w-full py-3 rounded-xl text-sm font-semibold text-white bg-teal-500 hover:bg-teal-400 transition-colors cursor-pointer"
+                className="w-full py-3 rounded-xl text-sm font-semibold text-[#2D3748] bg-[#4ADE80] hover:bg-teal-400 transition-colors cursor-pointer"
               >
                 Join Group
               </button>
-              <p className="text-gray-600 text-xs mt-4">
+              <p className="text-[#718096] text-xs mt-4">
                 You'll need to sign in if you haven't already
               </p>
             </>
@@ -83,10 +83,10 @@ export function JoinGroupPage() {
           {status === 'joining' && (
             <>
               <div className="w-14 h-14 rounded-full bg-teal-500/15 flex items-center justify-center mx-auto mb-4">
-                <Loader2 className="w-7 h-7 text-teal-400 animate-spin" />
+                <Loader2 className="w-7 h-7 text-[#16a34a] animate-spin" />
               </div>
-              <h1 className="text-white font-bold text-xl mb-2">Joining…</h1>
-              <p className="text-gray-400 text-sm">Hang tight, we're adding you to the group</p>
+              <h1 className="text-[#2D3748] font-bold text-xl mb-2">Joining…</h1>
+              <p className="text-[#718096] text-sm">Hang tight, we're adding you to the group</p>
             </>
           )}
 
@@ -96,8 +96,8 @@ export function JoinGroupPage() {
               <div className="w-14 h-14 rounded-full bg-emerald-500/15 flex items-center justify-center mx-auto mb-4">
                 <span className="text-3xl">🎉</span>
               </div>
-              <h1 className="text-white font-bold text-xl mb-2">You're in!</h1>
-              <p className="text-gray-400 text-sm">Redirecting you to the group…</p>
+              <h1 className="text-[#2D3748] font-bold text-xl mb-2">You're in!</h1>
+              <p className="text-[#718096] text-sm">Redirecting you to the group…</p>
             </>
           )}
 
@@ -107,13 +107,13 @@ export function JoinGroupPage() {
               <div className="w-14 h-14 rounded-full bg-amber-500/15 flex items-center justify-center mx-auto mb-4">
                 <Users className="w-7 h-7 text-amber-400" />
               </div>
-              <h1 className="text-white font-bold text-xl mb-2">Already a member</h1>
-              <p className="text-gray-400 text-sm mb-6">
+              <h1 className="text-[#2D3748] font-bold text-xl mb-2">Already a member</h1>
+              <p className="text-[#718096] text-sm mb-6">
                 You're already in this group.
               </p>
               <button
                 onClick={() => navigate('/groups')}
-                className="w-full py-3 rounded-xl text-sm font-semibold text-white bg-teal-500 hover:bg-teal-400 transition-colors cursor-pointer"
+                className="w-full py-3 rounded-xl text-sm font-semibold text-[#2D3748] bg-[#4ADE80] hover:bg-teal-400 transition-colors cursor-pointer"
               >
                 Go to My Groups
               </button>
@@ -126,20 +126,20 @@ export function JoinGroupPage() {
               <div className="w-14 h-14 rounded-full bg-red-500/15 flex items-center justify-center mx-auto mb-4">
                 <AlertCircle className="w-7 h-7 text-red-400" />
               </div>
-              <h1 className="text-white font-bold text-xl mb-2">Invalid invite</h1>
-              <p className="text-gray-400 text-sm mb-6">
+              <h1 className="text-[#2D3748] font-bold text-xl mb-2">Invalid invite</h1>
+              <p className="text-[#718096] text-sm mb-6">
                 {errorMessage || 'This invite link is invalid or has expired.'}
               </p>
               <div className="space-y-2">
                 <button
                   onClick={handleJoin}
-                  className="w-full py-3 rounded-xl text-sm font-semibold text-white bg-white/10 hover:bg-white/15 transition-colors cursor-pointer"
+                  className="w-full py-3 rounded-xl text-sm font-semibold text-[#2D3748] bg-[#F1F5F4] hover:bg-white/15 transition-colors cursor-pointer"
                 >
                   Try Again
                 </button>
                 <button
                   onClick={() => navigate('/')}
-                  className="w-full py-2 text-sm font-medium text-gray-500 hover:text-gray-300 transition-colors cursor-pointer"
+                  className="w-full py-2 text-sm font-medium text-[#718096] hover:text-[#718096] transition-colors cursor-pointer"
                 >
                   Go Home
                 </button>

@@ -34,7 +34,7 @@ export function SimulateChargeButton({ subscriptionId, groupId, onCharged }: Sim
       <button
         onClick={handleCharge}
         disabled={isCharging}
-        className="flex items-center gap-1.5 bg-white/5 border border-white/10 text-gray-400 text-xs px-3 py-1 rounded-lg hover:bg-white/10 hover:text-gray-300 hover:border-white/20 transition-all cursor-pointer disabled:opacity-50"
+        className="flex items-center gap-1.5 bg-[#F7F7F5] border border-[#E2E8F0] text-[#718096] text-xs px-3 py-1 rounded-lg hover:bg-[#F1F5F4] hover:text-[#718096] hover:border-white/20 transition-all cursor-pointer disabled:opacity-50"
       >
         {isCharging ? (
           <Loader2 className="w-3 h-3 animate-spin" />
@@ -43,7 +43,7 @@ export function SimulateChargeButton({ subscriptionId, groupId, onCharged }: Sim
         )}
         Simulate Charge
       </button>
-      <span className="text-gray-600 text-[10px] mt-0.5 ml-0.5">Dev only — removes in production</span>
+      <span className="text-[#718096] text-[10px] mt-0.5 ml-0.5">Dev only — removes in production</span>
     </div>
   );
 }

@@ -16,7 +16,7 @@ export function MobileNav() {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 block md:hidden bg-[#1a1a1a] border-t border-white/10 pb-safe pb-4">
+    <div className="fixed bottom-0 left-0 right-0 z-50 block md:hidden bg-white border-t border-[#E2E8F0] pb-safe pb-4">
       <div className="flex justify-around items-center h-16">
         {tabs.map((tab) => {
           const isActive = location.pathname.startsWith(tab.path);
@@ -26,13 +26,13 @@ export function MobileNav() {
               key={tab.name}
               onClick={() => navigate(tab.path)}
               className={`flex flex-col items-center justify-center w-full h-full space-y-1 relative ${
-                isActive ? 'text-teal-400' : 'text-gray-500 hover:text-gray-300'
+                isActive ? 'text-[#16a34a]' : 'text-[#718096] hover:text-[#718096]'
               }`}
             >
               <div className="relative">
                 <Icon className="w-5 h-5" />
                 {tab.badge ? (
-                  <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-[#1a1a1a]" />
+                  <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white" />
                 ) : null}
               </div>
               <span className="text-[10px] font-medium">{tab.name}</span>

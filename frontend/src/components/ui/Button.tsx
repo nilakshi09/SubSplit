@@ -27,11 +27,11 @@ export function Button({
   const baseStyles = 'inline-flex items-center justify-center font-medium transition-colors focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed';
   
   const variants = {
-    primary: 'bg-teal-500 hover:bg-teal-600 text-white',
-    secondary: 'bg-white/10 hover:bg-white/20 text-white border border-white/10',
+    primary: 'bg-[#4ADE80] hover:bg-[#22c55e] text-[#2D3748]',
+    secondary: 'bg-[#F1F5F4] hover:bg-white/20 text-[#2D3748] border border-[#E2E8F0]',
     danger: 'bg-red-500/20 hover:bg-red-500/30 text-red-400 border border-red-500/30',
-    ghost: 'bg-transparent hover:bg-white/5 text-gray-400 hover:text-white',
-    teal: 'bg-teal-500/10 hover:bg-teal-500/20 text-teal-400 border border-teal-500/30',
+    ghost: 'bg-transparent hover:bg-[#F7F7F5] text-[#718096] hover:text-[#2D3748]',
+    teal: 'bg-[#4ADE80]/10 hover:bg-[#4ADE80]/20 text-[#16a34a] border border-[#4ADE80]/50',
   };
   
   const sizes = {

@@ -14,8 +14,8 @@ const sizeStyles: Record<string, string> = {
 };
 
 const colorStyles: Record<string, string> = {
-  default: 'text-white',
-  teal: 'text-teal-400',
+  default: 'text-[#2D3748]',
+  teal: 'text-[#16a34a]',
   green: 'text-green-400',
   orange: 'text-orange-400',
   red: 'text-red-400',

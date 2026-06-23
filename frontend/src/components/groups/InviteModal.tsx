@@ -57,32 +57,32 @@ export function InviteModal({ groupId, groupName, inviteCode: initialCode, onClo
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 30, scale: 0.95 }}
           transition={{ duration: 0.25, ease: [0, 0, 0.2, 1] }}
-          className="bg-[#1a1a1a] rounded-2xl p-6 w-full max-w-md border border-white/10 shadow-2xl"
+          className="bg-white rounded-2xl p-6 w-full max-w-md border border-[#E2E8F0] shadow-2xl"
         >
           {/* Header */}
           <div className="flex items-center justify-between mb-2">
-            <h2 className="text-white font-bold text-xl">Invite to {groupName}</h2>
+            <h2 className="text-[#2D3748] font-bold text-xl">Invite to {groupName}</h2>
             <button
               onClick={onClose}
-              className="text-gray-500 hover:text-white transition-colors cursor-pointer"
+              className="text-[#718096] hover:text-[#2D3748] transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
-          <p className="text-gray-400 text-sm mb-6">
+          <p className="text-[#718096] text-sm mb-6">
             Share this link with your friends to join the group
           </p>
 
           {/* Invite link input */}
           <div className="flex items-center gap-2 mb-4">
-            <div className="flex-1 flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-3 py-2.5 min-w-0">
-              <LinkIcon className="w-4 h-4 text-gray-500 flex-shrink-0" />
+            <div className="flex-1 flex items-center gap-2 bg-[#F7F7F5] border border-[#E2E8F0] rounded-lg px-3 py-2.5 min-w-0">
+              <LinkIcon className="w-4 h-4 text-[#718096] flex-shrink-0" />
               <input
                 type="text"
                 readOnly
                 value={inviteUrl}
-                className="flex-1 bg-transparent text-sm text-gray-300 outline-none min-w-0 truncate"
+                className="flex-1 bg-transparent text-sm text-[#718096] outline-none min-w-0 truncate"
               />
             </div>
             <button
@@ -91,7 +91,7 @@ export function InviteModal({ groupId, groupName, inviteCode: initialCode, onClo
               className={`flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer flex-shrink-0 ${
                 copied
                   ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                  : 'bg-teal-500 hover:bg-teal-400 text-white'
+                  : 'bg-[#4ADE80] hover:bg-teal-400 text-[#2D3748]'
               }`}
             >
               {copied ? (
@@ -112,7 +112,7 @@ export function InviteModal({ groupId, groupName, inviteCode: initialCode, onClo
           <button
             onClick={handleGenerate}
             disabled={isGenerating}
-            className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 transition-colors cursor-pointer disabled:opacity-50"
+            className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium text-[#718096] hover:text-[#2D3748] bg-[#F7F7F5] hover:bg-[#F1F5F4] transition-colors cursor-pointer disabled:opacity-50"
           >
             {isGenerating ? (
               <Loader2 className="w-4 h-4 animate-spin" />

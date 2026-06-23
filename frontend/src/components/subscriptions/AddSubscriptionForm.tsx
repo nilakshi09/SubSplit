@@ -66,24 +66,24 @@ export function AddSubscriptionForm({ onClose, onSuccess }: AddSubscriptionFormP
   };
 
   const inputClass = (hasError: boolean) =>
-    `w-full bg-white/5 border ${
-      hasError ? 'border-red-500/50' : 'border-white/10'
-    } rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-teal-500/50 transition-colors`;
+    `w-full bg-[#F7F7F5] border ${
+      hasError ? 'border-red-500/50' : 'border-[#E2E8F0]'
+    } rounded-lg px-4 py-2.5 text-[#2D3748] text-sm placeholder-gray-600 focus:outline-none focus:border-teal-500/50 transition-colors`;
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={onClose}>
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-[#1a1a1a] rounded-xl border border-white/10 p-6 w-full max-w-md"
+        className="bg-white rounded-xl border border-[#E2E8F0] p-6 w-full max-w-md"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-lg font-semibold text-white">Add Subscription</h2>
+          <h2 className="text-lg font-semibold text-[#2D3748]">Add Subscription</h2>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+            className="p-1.5 rounded-lg hover:bg-[#F1F5F4] text-[#718096] hover:text-[#2D3748] transition-colors"
           >
             <X size={18} />
           </button>
@@ -92,7 +92,7 @@ export function AddSubscriptionForm({ onClose, onSuccess }: AddSubscriptionFormP
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Service Name */}
           <div>
-            <label className="text-gray-400 text-xs font-medium uppercase tracking-wider mb-1.5 block">
+            <label className="text-[#718096] text-xs font-medium uppercase tracking-wider mb-1.5 block">
               Service Name
             </label>
             <input
@@ -106,7 +106,7 @@ export function AddSubscriptionForm({ onClose, onSuccess }: AddSubscriptionFormP
 
           {/* Service Icon */}
           <div>
-            <label className="text-gray-400 text-xs font-medium uppercase tracking-wider mb-1.5 block">
+            <label className="text-[#718096] text-xs font-medium uppercase tracking-wider mb-1.5 block">
               Icon
             </label>
             <div className="flex flex-wrap gap-2">
@@ -117,8 +117,8 @@ export function AddSubscriptionForm({ onClose, onSuccess }: AddSubscriptionFormP
                   onClick={() => setServiceIcon(emoji)}
                   className={`w-10 h-10 flex items-center justify-center rounded-lg text-lg transition-all ${
                     serviceIcon === emoji
-                      ? 'border-teal-500/50 bg-teal-500/10 border'
-                      : 'bg-white/5 border border-transparent hover:border-white/10'
+                      ? 'border-teal-500/50 bg-[#4ADE80]/10 border'
+                      : 'bg-[#F7F7F5] border border-transparent hover:border-[#E2E8F0]'
                   }`}
                 >
                   {emoji}
@@ -129,7 +129,7 @@ export function AddSubscriptionForm({ onClose, onSuccess }: AddSubscriptionFormP
 
           {/* Amount */}
           <div>
-            <label className="text-gray-400 text-xs font-medium uppercase tracking-wider mb-1.5 block">
+            <label className="text-[#718096] text-xs font-medium uppercase tracking-wider mb-1.5 block">
               Amount
             </label>
             <input
@@ -146,7 +146,7 @@ export function AddSubscriptionForm({ onClose, onSuccess }: AddSubscriptionFormP
           {/* Currency & Frequency row */}
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-gray-400 text-xs font-medium uppercase tracking-wider mb-1.5 block">
+              <label className="text-[#718096] text-xs font-medium uppercase tracking-wider mb-1.5 block">
                 Currency
               </label>
               <select
@@ -162,7 +162,7 @@ export function AddSubscriptionForm({ onClose, onSuccess }: AddSubscriptionFormP
               </select>
             </div>
             <div>
-              <label className="text-gray-400 text-xs font-medium uppercase tracking-wider mb-1.5 block">
+              <label className="text-[#718096] text-xs font-medium uppercase tracking-wider mb-1.5 block">
                 Frequency
               </label>
               <select
@@ -181,7 +181,7 @@ export function AddSubscriptionForm({ onClose, onSuccess }: AddSubscriptionFormP
 
           {/* Billing Day */}
           <div>
-            <label className="text-gray-400 text-xs font-medium uppercase tracking-wider mb-1.5 block">
+            <label className="text-[#718096] text-xs font-medium uppercase tracking-wider mb-1.5 block">
               Billing Day (optional)
             </label>
             <input
@@ -200,14 +200,14 @@ export function AddSubscriptionForm({ onClose, onSuccess }: AddSubscriptionFormP
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors"
+              className="px-4 py-2 text-sm text-[#718096] hover:text-[#2D3748] transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={!canSubmit}
-              className="px-5 py-2 rounded-lg bg-teal-500 hover:bg-teal-400 text-white text-sm font-medium transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              className="px-5 py-2 rounded-lg bg-[#4ADE80] hover:bg-teal-400 text-[#2D3748] text-sm font-medium transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {submitting ? 'Adding...' : 'Add Subscription'}
             </button>

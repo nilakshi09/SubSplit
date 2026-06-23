@@ -104,12 +104,12 @@ export function SubscriptionDetail({ subscription, onClose }: SubscriptionDetail
           animate={{ x: 0 }}
           exit={{ x: '100%' }}
           transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-          className="fixed right-0 top-0 w-full max-w-md bg-[#1a1a1a] border-l border-white/10 h-full overflow-y-auto"
+          className="fixed right-0 top-0 w-full max-w-md bg-white border-l border-[#E2E8F0] h-full overflow-y-auto"
         >
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors z-10"
+            className="absolute top-4 right-4 p-2 rounded-lg bg-[#F7F7F5] hover:bg-[#F1F5F4] text-[#718096] hover:text-[#2D3748] transition-colors z-10"
           >
             <X size={18} />
           </button>
@@ -118,7 +118,7 @@ export function SubscriptionDetail({ subscription, onClose }: SubscriptionDetail
           <div className="p-6 pb-4">
             <div className="text-5xl mb-3">{subscription.service_icon}</div>
             <div className="flex items-center gap-3">
-              <h2 className="text-xl font-bold text-white">{subscription.service_name}</h2>
+              <h2 className="text-xl font-bold text-[#2D3748]">{subscription.service_name}</h2>
               <Badge variant={getStatusVariant(subscription.status)}>
                 {subscription.status}
               </Badge>
@@ -126,8 +126,8 @@ export function SubscriptionDetail({ subscription, onClose }: SubscriptionDetail
           </div>
 
           {/* Section 1: Billing Info */}
-          <div className="bg-[#141414] rounded-xl p-5 mx-6 mb-4 border border-white/5">
-            <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">
+          <div className="bg-[#141414] rounded-xl p-5 mx-6 mb-4 border border-[#E2E8F0]">
+            <h3 className="text-sm font-semibold text-[#718096] uppercase tracking-wider mb-4">
               Billing Info
             </h3>
 
@@ -140,35 +140,35 @@ export function SubscriptionDetail({ subscription, onClose }: SubscriptionDetail
             </div>
 
             <div className="space-y-2.5">
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-[#718096]">
                 {subscription.billing_day
                   ? `Charges on the ${subscription.billing_day}${getOrdinalSuffix(subscription.billing_day)} of each month`
                   : 'No billing day set'}
               </p>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-[#718096]">
                 Last charged: {formatDate(subscription.last_charged_at)}
               </p>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-[#718096]">
                 Total charges: {subscription.charge_count}
               </p>
             </div>
           </div>
 
           {/* Section 2: Group */}
-          <div className="bg-[#141414] rounded-xl p-5 mx-6 mb-4 border border-white/5">
-            <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">
+          <div className="bg-[#141414] rounded-xl p-5 mx-6 mb-4 border border-[#E2E8F0]">
+            <h3 className="text-sm font-semibold text-[#718096] uppercase tracking-wider mb-4">
               Group
             </h3>
 
             {subscription.group_id ? (
               <div className="space-y-3">
-                <div className="flex items-center gap-2 text-sm text-gray-300">
-                  <Users size={16} className="text-teal-400" />
+                <div className="flex items-center gap-2 text-sm text-[#718096]">
+                  <Users size={16} className="text-[#16a34a]" />
                   <span>Assigned to a group</span>
                 </div>
                 <button
                   onClick={() => navigate(`/groups/${subscription.group_id}`)}
-                  className="flex items-center gap-2 text-sm text-teal-400 hover:text-teal-300 font-medium transition-colors"
+                  className="flex items-center gap-2 text-sm text-[#16a34a] hover:text-[#16a34a] font-medium transition-colors"
                 >
                   View Group
                   <ExternalLink size={14} />
@@ -176,10 +176,10 @@ export function SubscriptionDetail({ subscription, onClose }: SubscriptionDetail
               </div>
             ) : (
               <div className="space-y-3">
-                <p className="text-sm text-gray-400">Not assigned to a group</p>
+                <p className="text-sm text-[#718096]">Not assigned to a group</p>
                 <button
                   onClick={() => toast('Coming soon!', { icon: '🚧' })}
-                  className="px-4 py-2 rounded-lg bg-white/5 text-gray-500 text-sm font-medium cursor-not-allowed border border-white/5"
+                  className="px-4 py-2 rounded-lg bg-[#F7F7F5] text-[#718096] text-sm font-medium cursor-not-allowed border border-[#E2E8F0]"
                   disabled
                 >
                   Assign to Group
@@ -189,8 +189,8 @@ export function SubscriptionDetail({ subscription, onClose }: SubscriptionDetail
           </div>
 
           {/* Section 3: Actions */}
-          <div className="bg-[#141414] rounded-xl p-5 mx-6 mb-4 border border-white/5">
-            <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">
+          <div className="bg-[#141414] rounded-xl p-5 mx-6 mb-4 border border-[#E2E8F0]">
+            <h3 className="text-sm font-semibold text-[#718096] uppercase tracking-wider mb-4">
               Actions
             </h3>
 

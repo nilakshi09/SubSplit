@@ -25,7 +25,7 @@ const statusConfig: Record<string, { label: string; className: string }> = {
   pending: { label: 'Pending', className: 'bg-amber-500/10 text-amber-400 border-amber-500/20' },
   confirmed: { label: 'Confirmed', className: 'bg-green-500/10 text-green-400 border-green-500/20' },
   rejected: { label: 'Rejected', className: 'bg-red-500/10 text-red-400 border-red-500/20' },
-  cancelled: { label: 'Cancelled', className: 'bg-gray-500/10 text-gray-400 border-gray-500/20' },
+  cancelled: { label: 'Cancelled', className: 'bg-gray-500/10 text-[#718096] border-gray-500/20' },
 };
 
 export function SettlementHistory({ groupId, currentUserId }: SettlementHistoryProps) {
@@ -61,20 +61,20 @@ export function SettlementHistory({ groupId, currentUserId }: SettlementHistoryP
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.35 }}
-      className="bg-[#1a1a1a] rounded-xl border border-white/10 overflow-hidden"
+      className="bg-white rounded-xl border border-[#E2E8F0] overflow-hidden"
     >
-      <div className="px-5 py-4 border-b border-white/5">
-        <h3 className="text-white font-semibold text-sm flex items-center gap-2">
-          <Clock className="w-4 h-4 text-teal-400" />
+      <div className="px-5 py-4 border-b border-[#E2E8F0]">
+        <h3 className="text-[#2D3748] font-semibold text-sm flex items-center gap-2">
+          <Clock className="w-4 h-4 text-[#16a34a]" />
           Settlement History
         </h3>
       </div>
 
       {groupSettlements.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-10 text-center px-4">
-          <Clock className="w-8 h-8 text-gray-600 mb-2" />
-          <p className="text-gray-400 text-sm font-medium">No settlements yet</p>
-          <p className="text-gray-600 text-xs mt-1">Settlements will appear here once created</p>
+          <Clock className="w-8 h-8 text-[#718096] mb-2" />
+          <p className="text-[#718096] text-sm font-medium">No settlements yet</p>
+          <p className="text-[#718096] text-xs mt-1">Settlements will appear here once created</p>
         </div>
       ) : (
         <div className="divide-y divide-white/5">
@@ -93,22 +93,22 @@ export function SettlementHistory({ groupId, currentUserId }: SettlementHistoryP
                 className="px-5 py-3 flex items-center gap-3 hover:bg-white/[0.02] transition-colors"
               >
                 {/* Avatar */}
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-500/15 to-teal-600/5 border border-white/10 flex items-center justify-center text-teal-400 font-semibold text-xs flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-500/15 to-teal-600/5 border border-[#E2E8F0] flex items-center justify-center text-[#16a34a] font-semibold text-xs flex-shrink-0">
                   {payerName.charAt(0).toUpperCase()}
                 </div>
 
                 {/* Info */}
                 <div className="flex-1 min-w-0">
-                  <p className="text-white text-sm truncate">
+                  <p className="text-[#2D3748] text-sm truncate">
                     <span className="font-medium">{payerName}</span>
-                    <span className="text-gray-500"> paid </span>
+                    <span className="text-[#718096]"> paid </span>
                     <span className="font-medium">{receiverName}</span>
                   </p>
-                  <p className="text-gray-500 text-xs">{formatDate(s.created_at)}</p>
+                  <p className="text-[#718096] text-xs">{formatDate(s.created_at)}</p>
                 </div>
 
                 {/* Amount */}
-                <span className="text-teal-400 font-bold text-sm flex-shrink-0">
+                <span className="text-[#16a34a] font-bold text-sm flex-shrink-0">
                   {formatCurrency(s.amount, s.currency)}
                 </span>
 

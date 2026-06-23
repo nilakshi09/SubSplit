@@ -32,30 +32,20 @@ export function LoginPage() {
   // Show nothing while checking auth to avoid flash
   if (status === 'loading') {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-teal-400 border-t-transparent rounded-full animate-spin" />
+      <div className="min-h-screen bg-[#F7F7F5] flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-[#4ADE80] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-[#F7F7F5] flex items-center justify-center px-4 relative overflow-hidden">
       {/* Background radial glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 600px 400px at 50% 40%, rgba(20, 184, 166, 0.12) 0%, transparent 70%)',
-        }}
-      />
-
-      {/* Subtle grid pattern */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.03]"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
+            'radial-gradient(ellipse 600px 400px at 50% 40%, white 0%, transparent 70%)',
         }}
       />
 
@@ -66,23 +56,23 @@ export function LoginPage() {
         className="relative z-10 w-full max-w-md"
       >
         {/* Card */}
-        <div className="rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-8 shadow-2xl shadow-black/20">
+        <div className="rounded-2xl border border-[#E2E8F0] bg-white p-8 shadow-sm">
           {/* Logo */}
           <div className="flex items-center justify-center gap-2.5 mb-8">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center shadow-lg shadow-teal-500/20">
-              <SplitSquareHorizontal className="w-5 h-5 text-white" />
+            <div className="w-10 h-10 rounded-xl bg-[#4ADE80]/20 flex items-center justify-center">
+              <SplitSquareHorizontal className="w-5 h-5 text-[#16a34a]" />
             </div>
-            <span className="text-2xl font-bold text-white tracking-tight">
+            <span className="text-2xl font-bold text-[#2D3748] tracking-tight">
               SubSplit
             </span>
           </div>
 
           {/* Headlines */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-white mb-3 tracking-tight">
+            <h1 className="text-3xl font-bold text-[#2D3748] mb-3 tracking-tight">
               Split smarter. Together.
             </h1>
-            <p className="text-gray-400 text-sm leading-relaxed">
+            <p className="text-[#718096] text-sm leading-relaxed">
               Connect your Gmail and let SubSplit handle the rest —
               automatically.
             </p>
@@ -93,7 +83,7 @@ export function LoginPage() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => api.auth.googleLogin()}
-            className="w-full flex items-center justify-center gap-3 bg-white text-[#111] rounded-xl py-3.5 px-6 font-medium text-[15px] hover:shadow-lg hover:shadow-white/10 transition-all duration-200 cursor-pointer"
+            className="w-full flex items-center justify-center gap-3 bg-white text-[#2D3748] border border-[#E2E8F0] rounded-xl py-3.5 px-6 font-medium text-[15px] hover:bg-[#F7F7F5] shadow-sm transition-all duration-200 cursor-pointer"
           >
             {/* Google G Logo SVG */}
             <svg width="20" height="20" viewBox="0 0 48 48">
@@ -118,7 +108,7 @@ export function LoginPage() {
           </motion.button>
 
           {/* Privacy note */}
-          <div className="mt-5 flex items-center justify-center gap-1.5 text-gray-500 text-xs">
+          <div className="mt-5 flex items-center justify-center gap-1.5 text-[#718096] text-xs">
             <Shield className="w-3.5 h-3.5" />
             <span>
               We only read billing emails. We never store email content.
@@ -127,13 +117,13 @@ export function LoginPage() {
         </div>
 
         {/* Footer links */}
-        <p className="text-center text-gray-600 text-xs mt-6">
+        <p className="text-center text-[#718096] text-xs mt-6">
           By signing in, you agree to our{' '}
-          <a href="/terms" className="text-gray-400 hover:text-white transition-colors underline underline-offset-2">
+          <a href="/terms" className="text-[#718096] hover:text-[#2D3748] transition-colors underline underline-offset-2">
             Terms of Service
           </a>{' '}
           and{' '}
-          <a href="/privacy" className="text-gray-400 hover:text-white transition-colors underline underline-offset-2">
+          <a href="/privacy" className="text-[#718096] hover:text-[#2D3748] transition-colors underline underline-offset-2">
             Privacy Policy
           </a>
         </p>

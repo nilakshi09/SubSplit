@@ -16,8 +16,8 @@ const paddingStyles: Record<string, string> = {
 };
 
 export function Card({ children, className = '', hover = false, onClick, padding = 'md' }: CardProps) {
-  const baseStyles = `bg-[#1a1a1a] rounded-xl border border-white/10 ${paddingStyles[padding]}`;
-  const hoverStyles = hover ? 'hover:border-teal-500/30 hover:shadow-lg transition-all cursor-pointer' : '';
+  const baseStyles = `bg-white rounded-xl border border-[#E2E8F0] ${paddingStyles[padding]}`;
+  const hoverStyles = hover ? 'hover:border-[#4ADE80]/50 hover:shadow-lg transition-all cursor-pointer' : '';
 
   if (hover) {
     return (

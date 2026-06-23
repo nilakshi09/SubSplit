@@ -66,16 +66,16 @@ export function SubscriptionsPage() {
 
   return (
     <PageWrapper>
-      <div className="min-h-screen bg-[#0f0f0f]">
+      <div className="min-h-screen bg-[#F7F7F5]">
         <AppHeader />
 
         <main className="max-w-6xl mx-auto px-6 py-8 pb-20 md:pb-8">
         {/* Header row */}
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-bold text-white">My Subscriptions</h1>
+          <h1 className="text-2xl font-bold text-[#2D3748]">My Subscriptions</h1>
           <button
             onClick={() => setShowAddForm(true)}
-            className="flex items-center gap-2 bg-teal-500 hover:bg-teal-400 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+            className="flex items-center gap-2 bg-[#4ADE80] hover:bg-teal-400 text-[#2D3748] text-sm font-medium px-4 py-2 rounded-lg transition-colors"
           >
             <Plus size={16} />
             Add Subscription
@@ -90,8 +90,8 @@ export function SubscriptionsPage() {
               onClick={() => setActiveFilter(tab.key)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all cursor-pointer ${
                 activeFilter === tab.key
-                  ? 'bg-teal-500/15 text-teal-400 border border-teal-500/30'
-                  : 'bg-white/5 text-gray-400 border border-white/10 hover:border-white/20'
+                  ? 'bg-teal-500/15 text-[#16a34a] border border-[#4ADE80]/50'
+                  : 'bg-[#F7F7F5] text-[#718096] border border-[#E2E8F0] hover:border-white/20'
               }`}
             >
               {tab.label}
@@ -100,17 +100,17 @@ export function SubscriptionsPage() {
         </div>
 
         {/* Summary bar */}
-        <div className="bg-[#1a1a1a] rounded-xl p-4 border border-white/10 mb-6 flex items-center gap-6">
+        <div className="bg-white rounded-xl p-4 border border-[#E2E8F0] mb-6 flex items-center gap-6">
           <div>
-            <p className="text-gray-400 text-xs">Total Monthly Spend</p>
-            <p className="text-white font-semibold">
+            <p className="text-[#718096] text-xs">Total Monthly Spend</p>
+            <p className="text-[#2D3748] font-semibold">
               {getCurrencySymbol(primaryCurrency)}{totalMonthlySpend.toFixed(2)}
             </p>
           </div>
-          <div className="w-px h-8 bg-white/10" />
+          <div className="w-px h-8 bg-[#F1F5F4]" />
           <div>
-            <p className="text-gray-400 text-xs">Active</p>
-            <p className="text-white font-semibold">{activeSubscriptions.length}</p>
+            <p className="text-[#718096] text-xs">Active</p>
+            <p className="text-[#2D3748] font-semibold">{activeSubscriptions.length}</p>
           </div>
         </div>
 

@@ -118,9 +118,9 @@ export function NotificationList() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <h1 className="text-2xl font-bold text-white">All Notifications</h1>
+          <h1 className="text-2xl font-bold text-[#2D3748]">All Notifications</h1>
           {unreadCount > 0 && (
-            <span className="px-2.5 py-0.5 bg-teal-500/15 text-teal-400 text-xs font-semibold rounded-full">
+            <span className="px-2.5 py-0.5 bg-teal-500/15 text-[#16a34a] text-xs font-semibold rounded-full">
               {unreadCount} unread
             </span>
           )}
@@ -128,7 +128,7 @@ export function NotificationList() {
         {unreadCount > 0 && (
           <button
             onClick={() => markAllAsRead()}
-            className="flex items-center gap-1.5 text-teal-400 hover:text-teal-300 text-sm font-medium transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 text-[#16a34a] hover:text-[#16a34a] text-sm font-medium transition-colors cursor-pointer"
           >
             <CheckCheck className="w-4 h-4" />
             Mark all read
@@ -140,7 +140,7 @@ export function NotificationList() {
       <div className="space-y-6">
         {Object.entries(grouped).map(([group, items]) => (
           <div key={group}>
-            <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-1">
+            <h2 className="text-xs font-semibold text-[#718096] uppercase tracking-wider mb-3 px-1">
               {group}
             </h2>
             <div className="space-y-2">
@@ -155,8 +155,8 @@ export function NotificationList() {
                     onClick={() => handleClick(n)}
                     className={`rounded-xl p-4 border cursor-pointer transition-all hover:border-white/20 ${
                       !n.read_at
-                        ? 'border-teal-500/30 bg-teal-500/5'
-                        : 'border-white/10 bg-[#1a1a1a]'
+                        ? 'border-[#4ADE80]/50 bg-teal-500/5'
+                        : 'border-[#E2E8F0] bg-white'
                     }`}
                   >
                     <div className="flex items-start gap-3">
@@ -167,18 +167,18 @@ export function NotificationList() {
 
                       {/* Content */}
                       <div className="flex-1 min-w-0">
-                        <p className="text-white text-sm font-medium leading-tight">
+                        <p className="text-[#2D3748] text-sm font-medium leading-tight">
                           {n.title}
                         </p>
-                        <p className="text-gray-400 text-sm mt-1">
+                        <p className="text-[#718096] text-sm mt-1">
                           {n.body}
                         </p>
                         <div className="flex items-center gap-3 mt-2.5">
-                          <span className="text-gray-500 text-xs">
+                          <span className="text-[#718096] text-xs">
                             {timeAgo(n.created_at)}
                           </span>
                           {n.action_url && (
-                            <span className="text-teal-400 text-xs font-medium hover:text-teal-300 transition-colors">
+                            <span className="text-[#16a34a] text-xs font-medium hover:text-[#16a34a] transition-colors">
                               View details →
                             </span>
                           )}
@@ -191,7 +191,7 @@ export function NotificationList() {
                           e.stopPropagation();
                           deleteNotification(n.id);
                         }}
-                        className="p-1.5 text-gray-600 hover:text-red-400 hover:bg-red-500/10 transition-colors cursor-pointer rounded-lg flex-shrink-0"
+                        className="p-1.5 text-[#718096] hover:text-red-400 hover:bg-red-500/10 transition-colors cursor-pointer rounded-lg flex-shrink-0"
                         aria-label="Delete notification"
                       >
                         <Trash2 className="w-4 h-4" />

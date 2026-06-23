@@ -55,9 +55,9 @@ export function PendingReview() {
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          <h2 className="text-lg font-semibold text-white">Pending Review</h2>
+          <h2 className="text-lg font-semibold text-[#2D3748]">Pending Review</h2>
           {pending.length > 0 && (
-            <span className="bg-teal-500/15 text-teal-400 text-xs font-semibold px-2 py-0.5 rounded-full">
+            <span className="bg-teal-500/15 text-[#16a34a] text-xs font-semibold px-2 py-0.5 rounded-full">
               {pending.length}
             </span>
           )}
@@ -65,7 +65,7 @@ export function PendingReview() {
         <button
           onClick={handleScan}
           disabled={isScanning}
-          className="flex items-center gap-2 bg-teal-500/10 border border-teal-500/30 text-teal-400 hover:bg-teal-500/20 disabled:opacity-50 disabled:cursor-not-allowed px-3.5 py-2 rounded-lg text-xs font-medium transition-all cursor-pointer"
+          className="flex items-center gap-2 bg-[#4ADE80]/10 border border-[#4ADE80]/50 text-[#16a34a] hover:bg-[#4ADE80]/20 disabled:opacity-50 disabled:cursor-not-allowed px-3.5 py-2 rounded-lg text-xs font-medium transition-all cursor-pointer"
         >
           {isScanning ? (
             <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -81,7 +81,7 @@ export function PendingReview() {
         {isScanning && pending.length === 0 && (
           <>
             {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-[#1a1a1a] rounded-xl p-4 border border-white/10">
+              <div key={i} className="bg-white rounded-xl p-4 border border-[#E2E8F0]">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
                     <Skeleton className="w-10 h-10 rounded-lg" />

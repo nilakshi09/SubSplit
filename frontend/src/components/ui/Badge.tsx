@@ -7,12 +7,12 @@ interface BadgeProps {
 }
 
 const variantStyles: Record<string, string> = {
-  default: 'bg-white/10 text-gray-300',
+  default: 'bg-[#F1F5F4] text-[#718096]',
   success: 'bg-green-500/20 text-green-400 border border-green-500/30',
   warning: 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30',
   danger: 'bg-red-500/20 text-red-400 border border-red-500/30',
-  teal: 'bg-teal-500/20 text-teal-400 border border-teal-500/30',
-  gray: 'bg-white/5 text-gray-500',
+  teal: 'bg-[#4ADE80]/20 text-[#16a34a] border border-[#4ADE80]/50',
+  gray: 'bg-[#F7F7F5] text-[#718096]',
 };
 
 const sizeStyles: Record<string, string> = {

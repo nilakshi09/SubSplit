@@ -21,15 +21,15 @@ export function GroupsPage() {
 
   return (
     <PageWrapper>
-      <div className="min-h-screen bg-[#0f0f0f]">
+      <div className="min-h-screen bg-[#F7F7F5]">
         <AppHeader />
 
       {/* Page Title Row */}
       <div className="max-w-6xl mx-auto px-6 pt-8 pb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <h1 className="text-xl font-bold text-white">My Groups</h1>
+        <h1 className="text-xl font-bold text-[#2D3748]">My Groups</h1>
         <button
           onClick={() => setShowCreate(true)}
-          className="flex items-center gap-2 bg-teal-500 hover:bg-teal-400 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors cursor-pointer"
+          className="flex items-center gap-2 bg-[#4ADE80] hover:bg-teal-400 text-[#2D3748] text-sm font-medium px-4 py-2 rounded-lg transition-colors cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           New Group
@@ -42,7 +42,7 @@ export function GroupsPage() {
         {isLoading && groups.length === 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-[#1a1a1a] rounded-xl p-5 border border-white/10">
+              <div key={i} className="bg-white rounded-xl p-5 border border-[#E2E8F0]">
                 <div className="flex items-center gap-3 mb-3">
                   <Skeleton className="w-10 h-10 rounded-lg" />
                   <Skeleton className="h-5 w-32" />

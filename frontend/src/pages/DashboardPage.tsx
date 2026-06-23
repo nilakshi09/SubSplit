@@ -133,7 +133,7 @@ export function DashboardPage() {
 
   return (
     <PageWrapper>
-      <div className="min-h-screen bg-[#0f0f0f]">
+      <div className="min-h-screen bg-[#F7F7F5]">
         <AppHeader />
 
       {/* Main Content */}
@@ -144,11 +144,11 @@ export function DashboardPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="text-2xl font-bold text-white"
+            className="text-2xl font-bold text-[#2D3748]"
           >
             Good {greeting}, {user?.name?.split(' ')[0]} 👋
             {isDemoMode && (
-              <span className="ml-3 px-2 py-0.5 rounded text-xs font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20 align-middle">
+              <span className="ml-3 px-2 py-0.5 rounded text-xs font-medium bg-[#4ADE80]/20 text-[#16a34a] border border-[#4ADE80]/30 align-middle">
                 Demo Mode
               </span>
             )}
@@ -164,7 +164,7 @@ export function DashboardPage() {
                 }
               }}
               disabled={isScanning}
-              className="flex items-center gap-1.5 bg-teal-500 hover:bg-teal-400 disabled:opacity-50 text-white text-sm font-medium px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 bg-[#4ADE80] hover:bg-[#22c55e] disabled:opacity-50 text-white text-sm font-medium px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
             >
               {isScanning ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -218,40 +218,40 @@ export function DashboardPage() {
               }
             }}
             disabled={isScanning}
-            className="bg-[#1a1a1a] rounded-xl p-4 border border-white/10 hover:border-teal-500/30 transition-all cursor-pointer flex items-center gap-3 text-left disabled:opacity-50"
+            className="bg-white rounded-xl p-4 border border-[#E2E8F0] hover:border-[#4ADE80]/50 transition-all cursor-pointer flex items-center gap-3 text-left disabled:opacity-50"
           >
-            <div className="w-10 h-10 rounded-lg bg-teal-500/10 flex items-center justify-center flex-shrink-0">
-              <ScanLine className="w-5 h-5 text-teal-400" />
+            <div className="w-10 h-10 rounded-lg bg-[#4ADE80]/10 flex items-center justify-center flex-shrink-0">
+              <ScanLine className="w-5 h-5 text-[#16a34a]" />
             </div>
             <div>
-              <p className="text-sm font-medium text-white">Scan Gmail</p>
-              <p className="text-xs text-gray-500">Auto-detect subscriptions</p>
+              <p className="text-sm font-medium text-[#2D3748]">Scan Gmail</p>
+              <p className="text-xs text-[#718096]">Auto-detect subscriptions</p>
             </div>
           </button>
 
           <button
             onClick={() => navigate('/groups')}
-            className="bg-[#1a1a1a] rounded-xl p-4 border border-white/10 hover:border-teal-500/30 transition-all cursor-pointer flex items-center gap-3 text-left"
+            className="bg-white rounded-xl p-4 border border-[#E2E8F0] hover:border-[#4ADE80]/50 transition-all cursor-pointer flex items-center gap-3 text-left"
           >
-            <div className="w-10 h-10 rounded-lg bg-teal-500/10 flex items-center justify-center flex-shrink-0">
-              <Users className="w-5 h-5 text-teal-400" />
+            <div className="w-10 h-10 rounded-lg bg-[#4ADE80]/10 flex items-center justify-center flex-shrink-0">
+              <Users className="w-5 h-5 text-[#16a34a]" />
             </div>
             <div>
-              <p className="text-sm font-medium text-white">Create Group</p>
-              <p className="text-xs text-gray-500">Split with friends</p>
+              <p className="text-sm font-medium text-[#2D3748]">Create Group</p>
+              <p className="text-xs text-[#718096]">Split with friends</p>
             </div>
           </button>
 
           <button
             onClick={() => setShowAddSub(true)}
-            className="bg-[#1a1a1a] rounded-xl p-4 border border-white/10 hover:border-teal-500/30 transition-all cursor-pointer flex items-center gap-3 text-left"
+            className="bg-white rounded-xl p-4 border border-[#E2E8F0] hover:border-[#4ADE80]/50 transition-all cursor-pointer flex items-center gap-3 text-left"
           >
-            <div className="w-10 h-10 rounded-lg bg-teal-500/10 flex items-center justify-center flex-shrink-0">
-              <Plus className="w-5 h-5 text-teal-400" />
+            <div className="w-10 h-10 rounded-lg bg-[#4ADE80]/10 flex items-center justify-center flex-shrink-0">
+              <Plus className="w-5 h-5 text-[#16a34a]" />
             </div>
             <div>
-              <p className="text-sm font-medium text-white">Add Subscription</p>
-              <p className="text-xs text-gray-500">Track manually</p>
+              <p className="text-sm font-medium text-[#2D3748]">Add Subscription</p>
+              <p className="text-xs text-[#718096]">Track manually</p>
             </div>
           </button>
         </motion.div>
@@ -270,17 +270,17 @@ export function DashboardPage() {
           className="mt-10 mb-10"
         >
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-white">Recent Activity</h2>
+            <h2 className="text-lg font-semibold text-[#2D3748]">Recent Activity</h2>
             <button
               onClick={() => navigate('/notifications')}
-              className="text-teal-400 hover:text-teal-300 text-sm font-medium transition-colors flex items-center gap-1"
+              className="text-[#16a34a] hover:text-[#22c55e] text-sm font-medium transition-colors flex items-center gap-1"
             >
               View all <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
           {recentNotifications.length === 0 ? (
-            <p className="text-sm text-gray-500">No recent activity</p>
+            <p className="text-sm text-[#718096]">No recent activity</p>
           ) : (
             <div className="space-y-2">
               {recentNotifications.map((notif) => (
@@ -288,15 +288,15 @@ export function DashboardPage() {
                   key={notif.id}
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="flex items-center gap-3 p-3 bg-[#1a1a1a] rounded-lg border border-white/5 hover:border-white/10 transition-colors"
+                  className="flex items-center gap-3 p-3 bg-white rounded-lg border border-[#E2E8F0] hover:border-[#E2E8F0] transition-colors"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-teal-500/10 flex items-center justify-center flex-shrink-0">
-                    <Bell className="w-4 h-4 text-teal-400" />
+                  <div className="w-8 h-8 rounded-lg bg-[#4ADE80]/10 flex items-center justify-center flex-shrink-0">
+                    <Bell className="w-4 h-4 text-[#16a34a]" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm text-white font-medium truncate">{notif.title}</p>
+                    <p className="text-sm text-[#2D3748] font-medium truncate">{notif.title}</p>
                   </div>
-                  <span className="text-xs text-gray-500 flex-shrink-0">{timeAgo(notif.created_at)}</span>
+                  <span className="text-xs text-[#718096] flex-shrink-0">{timeAgo(notif.created_at)}</span>
                 </motion.div>
               ))}
             </div>
@@ -310,10 +310,10 @@ export function DashboardPage() {
           transition={{ delay: 0.4 }}
         >
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-white">Your Groups</h2>
+            <h2 className="text-lg font-semibold text-[#2D3748]">Your Groups</h2>
             <button
               onClick={() => navigate('/groups')}
-              className="text-teal-400 hover:text-teal-300 text-sm font-medium transition-colors flex items-center gap-1"
+              className="text-[#16a34a] hover:text-[#22c55e] text-sm font-medium transition-colors flex items-center gap-1"
             >
               View all <ArrowRight className="w-3.5 h-3.5" />
             </button>

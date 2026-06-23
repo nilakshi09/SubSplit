@@ -89,10 +89,10 @@ export function SettingsPage() {
 
   return (
     <PageWrapper>
-      <div className="min-h-screen bg-[#0f0f0f]">
+      <div className="min-h-screen bg-[#F7F7F5]">
         <AppHeader />
         <main className="max-w-2xl mx-auto px-6 py-8 pb-20 md:pb-8">
-        <h1 className="text-2xl font-bold text-white mb-8">Settings</h1>
+        <h1 className="text-2xl font-bold text-[#2D3748] mb-8">Settings</h1>
 
         <div className="space-y-6">
           {/* Profile Section */}
@@ -101,18 +101,18 @@ export function SettingsPage() {
             variants={sectionVariants}
             initial="hidden"
             animate="visible"
-            className="bg-[#1a1a1a] rounded-xl p-6 border border-white/10"
+            className="bg-white rounded-xl p-6 border border-[#E2E8F0]"
           >
             <div className="flex items-center gap-2 mb-5">
-              <User className="w-5 h-5 text-teal-400" />
-              <h2 className="text-white font-semibold text-lg">Profile</h2>
+              <User className="w-5 h-5 text-[#16a34a]" />
+              <h2 className="text-[#2D3748] font-semibold text-lg">Profile</h2>
             </div>
             <div className="flex items-center gap-4">
               <Avatar name={user?.name || 'User'} avatarUrl={user?.avatarUrl} size="lg" className="ring-2 ring-white/10" />
               <div>
-                <p className="text-white font-medium text-lg">{user?.name}</p>
-                <p className="text-gray-400 text-sm">{user?.email}</p>
-                <p className="text-gray-600 text-xs mt-1">Managed by Google account</p>
+                <p className="text-[#2D3748] font-medium text-lg">{user?.name}</p>
+                <p className="text-[#718096] text-sm">{user?.email}</p>
+                <p className="text-[#718096] text-xs mt-1">Managed by Google account</p>
               </div>
             </div>
           </motion.div>
@@ -123,25 +123,25 @@ export function SettingsPage() {
             variants={sectionVariants}
             initial="hidden"
             animate="visible"
-            className="bg-[#1a1a1a] rounded-xl p-6 border border-white/10"
+            className="bg-white rounded-xl p-6 border border-[#E2E8F0]"
           >
             <div className="flex items-center gap-2 mb-1">
-              <CreditCard className="w-5 h-5 text-teal-400" />
-              <h2 className="text-white font-semibold text-lg">Payment Methods</h2>
+              <CreditCard className="w-5 h-5 text-[#16a34a]" />
+              <h2 className="text-[#2D3748] font-semibold text-lg">Payment Methods</h2>
             </div>
-            <p className="text-gray-500 text-sm mb-5">
+            <p className="text-[#718096] text-sm mb-5">
               Add your payment info so group members can pay you easily
             </p>
 
             {loadingPayment ? (
               <div className="flex items-center justify-center py-8">
-                <Loader2 className="w-6 h-6 text-teal-400 animate-spin" />
+                <Loader2 className="w-6 h-6 text-[#16a34a] animate-spin" />
               </div>
             ) : (
               <div className="space-y-4">
                 {/* UPI ID */}
                 <div>
-                  <label className="text-gray-400 text-xs font-medium uppercase tracking-wider mb-1.5 block">
+                  <label className="text-[#718096] text-xs font-medium uppercase tracking-wider mb-1.5 block">
                     UPI ID
                   </label>
                   <input
@@ -149,13 +149,13 @@ export function SettingsPage() {
                     value={paymentInfo.upi_id}
                     onChange={e => setPaymentInfo(prev => ({ ...prev, upi_id: e.target.value }))}
                     placeholder="yourname@upi"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-teal-500/50 transition-colors"
+                    className="w-full bg-[#F7F7F5] border border-[#E2E8F0] rounded-lg px-4 py-2.5 text-[#2D3748] text-sm placeholder-gray-600 focus:outline-none focus:border-teal-500/50 transition-colors"
                   />
                 </div>
 
                 {/* Venmo Handle */}
                 <div>
-                  <label className="text-gray-400 text-xs font-medium uppercase tracking-wider mb-1.5 block">
+                  <label className="text-[#718096] text-xs font-medium uppercase tracking-wider mb-1.5 block">
                     Venmo Handle
                   </label>
                   <input
@@ -163,13 +163,13 @@ export function SettingsPage() {
                     value={paymentInfo.venmo_handle}
                     onChange={e => setPaymentInfo(prev => ({ ...prev, venmo_handle: e.target.value }))}
                     placeholder="@username"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-teal-500/50 transition-colors"
+                    className="w-full bg-[#F7F7F5] border border-[#E2E8F0] rounded-lg px-4 py-2.5 text-[#2D3748] text-sm placeholder-gray-600 focus:outline-none focus:border-teal-500/50 transition-colors"
                   />
                 </div>
 
                 {/* PayPal Email */}
                 <div>
-                  <label className="text-gray-400 text-xs font-medium uppercase tracking-wider mb-1.5 block">
+                  <label className="text-[#718096] text-xs font-medium uppercase tracking-wider mb-1.5 block">
                     PayPal Email
                   </label>
                   <input
@@ -177,13 +177,13 @@ export function SettingsPage() {
                     value={paymentInfo.paypal_email}
                     onChange={e => setPaymentInfo(prev => ({ ...prev, paypal_email: e.target.value }))}
                     placeholder="email@example.com"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-teal-500/50 transition-colors"
+                    className="w-full bg-[#F7F7F5] border border-[#E2E8F0] rounded-lg px-4 py-2.5 text-[#2D3748] text-sm placeholder-gray-600 focus:outline-none focus:border-teal-500/50 transition-colors"
                   />
                 </div>
 
                 {/* Preferred Method */}
                 <div>
-                  <label className="text-gray-400 text-xs font-medium uppercase tracking-wider mb-2 block">
+                  <label className="text-[#718096] text-xs font-medium uppercase tracking-wider mb-2 block">
                     Preferred Method
                   </label>
                   <div className="flex gap-2">
@@ -193,8 +193,8 @@ export function SettingsPage() {
                         onClick={() => setPaymentInfo(prev => ({ ...prev, preferred_method: m.key }))}
                         className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all cursor-pointer ${
                           paymentInfo.preferred_method === m.key
-                            ? 'bg-teal-500/15 text-teal-400 border border-teal-500/30'
-                            : 'bg-white/5 text-gray-400 border border-white/10 hover:border-white/20'
+                            ? 'bg-teal-500/15 text-[#16a34a] border border-[#4ADE80]/50'
+                            : 'bg-[#F7F7F5] text-[#718096] border border-[#E2E8F0] hover:border-white/20'
                         }`}
                       >
                         {m.label}
@@ -207,7 +207,7 @@ export function SettingsPage() {
                 <button
                   onClick={savePaymentInfo}
                   disabled={savingPayment}
-                  className="w-full mt-2 bg-teal-500 hover:bg-teal-400 disabled:opacity-50 text-white font-semibold py-2.5 px-4 rounded-lg transition-colors cursor-pointer flex items-center justify-center gap-2"
+                  className="w-full mt-2 bg-[#4ADE80] hover:bg-teal-400 disabled:opacity-50 text-[#2D3748] font-semibold py-2.5 px-4 rounded-lg transition-colors cursor-pointer flex items-center justify-center gap-2"
                 >
                   {savingPayment && <Loader2 className="w-4 h-4 animate-spin" />}
                   Save Payment Info
@@ -222,11 +222,11 @@ export function SettingsPage() {
             variants={sectionVariants}
             initial="hidden"
             animate="visible"
-            className="bg-[#1a1a1a] rounded-xl p-6 border border-white/10"
+            className="bg-white rounded-xl p-6 border border-[#E2E8F0]"
           >
             <div className="flex items-center gap-2 mb-5">
-              <Mail className="w-5 h-5 text-teal-400" />
-              <h2 className="text-white font-semibold text-lg">Gmail Connection</h2>
+              <Mail className="w-5 h-5 text-[#16a34a]" />
+              <h2 className="text-[#2D3748] font-semibold text-lg">Gmail Connection</h2>
             </div>
 
             <div className="flex items-center justify-between">
@@ -248,7 +248,7 @@ export function SettingsPage() {
             <div className="flex gap-3 mt-4">
               <button
                 onClick={() => api.auth.googleLogin()}
-                className="px-4 py-2 bg-white/5 text-gray-300 hover:text-white text-sm font-medium rounded-lg border border-white/10 hover:border-white/20 transition-all cursor-pointer"
+                className="px-4 py-2 bg-[#F7F7F5] text-[#718096] hover:text-[#2D3748] text-sm font-medium rounded-lg border border-[#E2E8F0] hover:border-white/20 transition-all cursor-pointer"
               >
                 Reconnect Gmail
               </button>
@@ -269,11 +269,11 @@ export function SettingsPage() {
             variants={sectionVariants}
             initial="hidden"
             animate="visible"
-            className="bg-[#1a1a1a] rounded-xl p-6 border border-white/10"
+            className="bg-white rounded-xl p-6 border border-[#E2E8F0]"
           >
             <div className="flex items-center gap-2 mb-5">
-              <Shield className="w-5 h-5 text-teal-400" />
-              <h2 className="text-white font-semibold text-lg">Account</h2>
+              <Shield className="w-5 h-5 text-[#16a34a]" />
+              <h2 className="text-[#2D3748] font-semibold text-lg">Account</h2>
             </div>
 
             <button

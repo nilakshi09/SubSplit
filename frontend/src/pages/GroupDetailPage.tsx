@@ -102,7 +102,7 @@ export function GroupDetailPage() {
   if (isLoading && !currentGroup) {
     return (
       <PageWrapper>
-        <div className="min-h-screen bg-[#0f0f0f]">
+        <div className="min-h-screen bg-[#F7F7F5]">
           <AppHeader />
           <main className="max-w-6xl mx-auto px-6 py-8 pb-20 md:pb-8">
           <div className="flex items-center gap-4 mb-8">
@@ -129,14 +129,14 @@ export function GroupDetailPage() {
   if (!currentGroup) {
     return (
       <PageWrapper>
-        <div className="min-h-screen bg-[#0f0f0f]">
+        <div className="min-h-screen bg-[#F7F7F5]">
           <AppHeader />
           <div className="flex items-center justify-center pb-20 md:pb-8" style={{ minHeight: 'calc(100vh - 73px)' }}>
           <div className="text-center">
-            <p className="text-gray-400 text-lg mb-4">Group not found</p>
+            <p className="text-[#718096] text-lg mb-4">Group not found</p>
             <button
               onClick={() => navigate('/groups')}
-              className="text-teal-400 hover:text-teal-300 text-sm font-medium transition-colors cursor-pointer"
+              className="text-[#16a34a] hover:text-[#16a34a] text-sm font-medium transition-colors cursor-pointer"
             >
               ← Back to Groups
             </button>
@@ -166,16 +166,16 @@ export function GroupDetailPage() {
                   {sub.service_icon || '💳'}
                 </span>
                 <div className="flex-1 min-w-0">
-                  <p className="text-white text-sm font-medium truncate">
+                  <p className="text-[#2D3748] text-sm font-medium truncate">
                     {sub.service_name || sub.name}
                   </p>
                   {sub.split_type && (
-                    <p className="text-gray-500 text-xs">
+                    <p className="text-[#718096] text-xs">
                       Split: {sub.split_type === 'equal' ? 'Equal' : 'Custom'}
                     </p>
                   )}
                 </div>
-                <span className="text-teal-400 font-bold text-sm flex-shrink-0">
+                <span className="text-[#16a34a] font-bold text-sm flex-shrink-0">
                   {sub.currency === 'INR' ? '₹' : sub.currency === 'USD' ? '$' : sub.currency + ' '}
                   {sub.amount?.toLocaleString?.(undefined, { minimumFractionDigits: 2 }) ?? '—'}
                 </span>
@@ -197,9 +197,9 @@ export function GroupDetailPage() {
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center py-12 text-center px-4">
-          <CreditCard className="w-10 h-10 text-gray-600 mb-3" />
-          <p className="text-gray-400 text-sm font-medium mb-1">No subscriptions assigned yet</p>
-          <p className="text-gray-600 text-xs">
+          <CreditCard className="w-10 h-10 text-[#718096] mb-3" />
+          <p className="text-[#718096] text-sm font-medium mb-1">No subscriptions assigned yet</p>
+          <p className="text-[#718096] text-xs">
             Assign subscriptions to this group to start splitting costs
           </p>
         </div>
@@ -215,9 +215,9 @@ export function GroupDetailPage() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="bg-[#1a1a1a] rounded-xl border border-white/10 p-5"
+        className="bg-white rounded-xl border border-[#E2E8F0] p-5"
       >
-        <h3 className="text-white font-semibold text-sm mb-4">Group Settings</h3>
+        <h3 className="text-[#2D3748] font-semibold text-sm mb-4">Group Settings</h3>
 
         {showDeleteConfirm ? (
           <div className="bg-red-500/5 border border-red-500/20 rounded-lg p-4">
@@ -225,21 +225,21 @@ export function GroupDetailPage() {
               <AlertTriangle className="w-4 h-4" />
               Delete this group?
             </div>
-            <p className="text-gray-500 text-xs mb-3">
+            <p className="text-[#718096] text-xs mb-3">
               This action cannot be undone. All members will be removed.
             </p>
             <div className="flex items-center gap-2">
               <button
                 onClick={handleDelete}
                 disabled={isDeleting}
-                className="flex items-center gap-1.5 bg-red-500 hover:bg-red-400 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors cursor-pointer disabled:opacity-50"
+                className="flex items-center gap-1.5 bg-red-500 hover:bg-red-400 text-[#2D3748] text-xs font-medium px-3 py-1.5 rounded-lg transition-colors cursor-pointer disabled:opacity-50"
               >
                 {isDeleting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Trash2 className="w-3.5 h-3.5" />}
                 {isDeleting ? 'Deleting…' : 'Yes, Delete'}
               </button>
               <button
                 onClick={() => setShowDeleteConfirm(false)}
-                className="text-gray-500 hover:text-gray-300 text-xs font-medium px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+                className="text-[#718096] hover:text-[#718096] text-xs font-medium px-3 py-1.5 rounded-lg bg-[#F7F7F5] hover:bg-[#F1F5F4] transition-colors cursor-pointer"
               >
                 Cancel
               </button>
@@ -260,14 +260,14 @@ export function GroupDetailPage() {
 
   return (
     <PageWrapper>
-      <div className="min-h-screen bg-[#0f0f0f]">
+      <div className="min-h-screen bg-[#F7F7F5]">
         <AppHeader />
 
       {/* Group Action Bar */}
       <div className="max-w-6xl mx-auto px-6 pt-6 flex items-center justify-between">
         <button
           onClick={() => navigate('/groups')}
-          className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors cursor-pointer text-sm font-medium"
+          className="flex items-center gap-2 text-[#718096] hover:text-[#2D3748] transition-colors cursor-pointer text-sm font-medium"
         >
           <ArrowLeft className="w-4 h-4" />
           Groups
@@ -275,7 +275,7 @@ export function GroupDetailPage() {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setShowInvite(true)}
-            className="flex items-center gap-1.5 bg-teal-500 hover:bg-teal-400 text-white text-sm font-medium px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 bg-[#4ADE80] hover:bg-teal-400 text-[#2D3748] text-sm font-medium px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
           >
             <UserPlus className="w-4 h-4" />
             Invite
@@ -284,7 +284,7 @@ export function GroupDetailPage() {
             <button
               onClick={handleLeave}
               disabled={isLeaving}
-              className="flex items-center gap-1.5 text-gray-500 hover:text-red-400 text-sm font-medium px-3 py-1.5 rounded-lg bg-white/5 hover:bg-red-500/10 transition-colors cursor-pointer disabled:opacity-50"
+              className="flex items-center gap-1.5 text-[#718096] hover:text-red-400 text-sm font-medium px-3 py-1.5 rounded-lg bg-[#F7F7F5] hover:bg-red-500/10 transition-colors cursor-pointer disabled:opacity-50"
             >
               {isLeaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <LogOut className="w-4 h-4" />}
               Leave
@@ -301,13 +301,13 @@ export function GroupDetailPage() {
           animate={{ opacity: 1, y: 0 }}
           className="flex items-start gap-4 mb-6"
         >
-          <div className="w-16 h-16 rounded-xl bg-[#1a1a1a] border border-white/10 flex items-center justify-center text-4xl flex-shrink-0">
+          <div className="w-16 h-16 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center text-4xl flex-shrink-0">
             {currentGroup.emoji}
           </div>
           <div className="min-w-0">
-            <h1 className="text-2xl font-bold text-white mb-1">{currentGroup.name}</h1>
+            <h1 className="text-2xl font-bold text-[#2D3748] mb-1">{currentGroup.name}</h1>
             {currentGroup.description && (
-              <p className="text-gray-400 text-sm mb-2">{currentGroup.description}</p>
+              <p className="text-[#718096] text-sm mb-2">{currentGroup.description}</p>
             )}
           </div>
         </motion.div>
@@ -317,31 +317,31 @@ export function GroupDetailPage() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.05 }}
-          className="bg-[#1a1a1a] rounded-xl p-4 border border-white/10 flex items-center gap-6 mb-6 flex-wrap"
+          className="bg-white rounded-xl p-4 border border-[#E2E8F0] flex items-center gap-6 mb-6 flex-wrap"
         >
           <div className="flex items-center gap-2">
-            <CreditCard className="w-4 h-4 text-teal-400" />
+            <CreditCard className="w-4 h-4 text-[#16a34a]" />
             <div>
-              <p className="text-xs text-gray-400">Monthly Spend</p>
-              <p className="text-sm font-semibold text-white">
+              <p className="text-xs text-[#718096]">Monthly Spend</p>
+              <p className="text-sm font-semibold text-[#2D3748]">
                 ₹{totalMonthly.toLocaleString(undefined, { minimumFractionDigits: 0 })}
               </p>
             </div>
           </div>
-          <div className="w-px h-8 bg-white/10" />
+          <div className="w-px h-8 bg-[#F1F5F4]" />
           <div className="flex items-center gap-2">
-            <Users className="w-4 h-4 text-teal-400" />
+            <Users className="w-4 h-4 text-[#16a34a]" />
             <div>
-              <p className="text-xs text-gray-400">Members</p>
-              <p className="text-sm font-semibold text-white">{memberCount}</p>
+              <p className="text-xs text-[#718096]">Members</p>
+              <p className="text-sm font-semibold text-[#2D3748]">{memberCount}</p>
             </div>
           </div>
-          <div className="w-px h-8 bg-white/10" />
+          <div className="w-px h-8 bg-[#F1F5F4]" />
           <div className="flex items-center gap-2">
-            <Hash className="w-4 h-4 text-teal-400" />
+            <Hash className="w-4 h-4 text-[#16a34a]" />
             <div>
-              <p className="text-xs text-gray-400">Subscriptions</p>
-              <p className="text-sm font-semibold text-white">{subscriptionCount}</p>
+              <p className="text-xs text-[#718096]">Subscriptions</p>
+              <p className="text-sm font-semibold text-[#2D3748]">{subscriptionCount}</p>
             </div>
           </div>
         </motion.div>
@@ -354,8 +354,8 @@ export function GroupDetailPage() {
               onClick={() => setActiveTab(tab.key)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all cursor-pointer whitespace-nowrap ${
                 activeTab === tab.key
-                  ? 'bg-teal-500/15 text-teal-400 border border-teal-500/30'
-                  : 'bg-white/5 text-gray-400 border border-white/10 hover:border-white/20'
+                  ? 'bg-teal-500/15 text-[#16a34a] border border-[#4ADE80]/50'
+                  : 'bg-[#F7F7F5] text-[#718096] border border-[#E2E8F0] hover:border-white/20'
               }`}
             >
               {tab.label}
@@ -372,11 +372,11 @@ export function GroupDetailPage() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="bg-[#1a1a1a] rounded-xl border border-white/10 overflow-hidden"
+                className="bg-white rounded-xl border border-[#E2E8F0] overflow-hidden"
               >
-                <div className="px-5 py-4 border-b border-white/5 flex items-center justify-between">
-                  <h3 className="text-white font-semibold text-sm flex items-center gap-2">
-                    <CreditCard className="w-4 h-4 text-teal-400" />
+                <div className="px-5 py-4 border-b border-[#E2E8F0] flex items-center justify-between">
+                  <h3 className="text-[#2D3748] font-semibold text-sm flex items-center gap-2">
+                    <CreditCard className="w-4 h-4 text-[#16a34a]" />
                     Subscriptions
                   </h3>
                 </div>
@@ -422,11 +422,11 @@ export function GroupDetailPage() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-[#1a1a1a] rounded-xl border border-white/10 overflow-hidden"
+            className="bg-white rounded-xl border border-[#E2E8F0] overflow-hidden"
           >
-            <div className="px-5 py-4 border-b border-white/5">
-              <h3 className="text-white font-semibold text-sm flex items-center gap-2">
-                <CreditCard className="w-4 h-4 text-teal-400" />
+            <div className="px-5 py-4 border-b border-[#E2E8F0]">
+              <h3 className="text-[#2D3748] font-semibold text-sm flex items-center gap-2">
+                <CreditCard className="w-4 h-4 text-[#16a34a]" />
                 All Subscriptions
               </h3>
             </div>

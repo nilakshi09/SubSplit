@@ -6,7 +6,7 @@ interface AvatarProps {
 }
 
 const colors = [
-  'bg-teal-500',
+  'bg-[#4ADE80]',
   'bg-purple-500',
   'bg-blue-500',
   'bg-orange-500',
@@ -46,7 +46,7 @@ export function Avatar({ name, avatarUrl, size = 'md', className = '' }: AvatarP
     <div
       className={`rounded-full flex items-center justify-center ${bgColor} ${sizeStyles[size]} ${className}`}
     >
-      <span className="text-white font-semibold uppercase">{letter}</span>
+      <span className="text-[#2D3748] font-semibold uppercase">{letter}</span>
     </div>
   );
 }
