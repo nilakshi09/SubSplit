@@ -97,22 +97,61 @@ export const SENDER_REGISTRY: SenderRule[] = [
  * Checks sender domain/address patterns and subject keyword patterns (case-insensitive).
  */
 export function findSenderRule(senderEmail: string, subject: string): SenderRule | null {
-  const emailLower = senderEmail.toLowerCase();
-  const subjectLower = subject.toLowerCase();
+  const lowerSender = senderEmail.toLowerCase();
+  const lowerSubject = subject.toLowerCase();
 
+  // 1. First try sender domain match (existing logic)
   for (const rule of SENDER_REGISTRY) {
-    const senderMatch = rule.senderPatterns.some((pattern) =>
-      emailLower.includes(pattern.toLowerCase()),
-    );
-    if (!senderMatch) continue;
+    for (const pattern of rule.senderPatterns) {
+      if (lowerSender.includes(pattern.toLowerCase())) {
+        return rule;
+      }
+    }
+  }
 
-    const subjectMatch = rule.subjectPatterns.some((keyword) =>
-      subjectLower.includes(keyword.toLowerCase()),
-    );
-    if (!subjectMatch) continue;
+  // 2. Fallback: match by subject keywords + amount presence
+  const billingKeywords = [
+    'payment confirmation', 'payment receipt', 'billing confirmation',
+    'invoice', 'subscription renewed', 'charge confirmation',
+    'order confirmation', 'receipt', 'payment successful',
+    'amount charged', 'billing statement', 'your payment',
+  ];
 
-    return rule;
+  const hasBillingKeyword = billingKeywords.some(kw => lowerSubject.includes(kw));
+
+  if (hasBillingKeyword) {
+    // Try to detect service name from subject
+    for (const rule of SENDER_REGISTRY) {
+      if (lowerSubject.includes(rule.serviceName.toLowerCase())) {
+        return rule;
+      }
+    }
+
+    // Return a generic rule if billing keyword found but no service match
+    return {
+      serviceName: extractServiceFromSubject(subject),
+      serviceIcon: '💳',
+      category: 'other',
+      senderPatterns: [],
+      subjectPatterns: billingKeywords,
+      amountPatterns: [
+        /(?:₹|Rs\.?|INR)\s*([\d,]+\.?\d{0,2})/gi,
+        /\$\s*([\d,]+\.?\d{0,2})/gi,
+        /(?:amount|charged|total|paid)[:\s]+(?:₹|Rs\.?|\$|INR)?\s*([\d,]+\.?\d{0,2})/gi,
+      ],
+    };
   }
 
   return null;
+}
+
+// Helper: extract service name from subject line
+function extractServiceFromSubject(subject: string): string {
+  // Remove common billing words to find service name
+  const cleaned = subject
+    .replace(/payment|confirmation|receipt|invoice|billing|charge|your|renewal|renewed/gi, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  
+  return cleaned.length > 2 ? cleaned.substring(0, 30) : 'Unknown Service';
 }
