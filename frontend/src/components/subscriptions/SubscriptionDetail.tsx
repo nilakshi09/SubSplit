@@ -76,16 +76,6 @@ function formatFrequency(frequency: string): string {
 export function SubscriptionDetail({ subscription, onClose }: SubscriptionDetailProps) {
   const navigate = useNavigate();
 
-  const handleCancel = async () => {
-    try {
-      await api.put(`/api/subscriptions/${subscription.id}`, { status: 'cancelled' });
-      toast.success(`${subscription.service_name} has been cancelled`);
-      onClose();
-    } catch (err: any) {
-      toast.error(err?.message || 'Failed to cancel subscription');
-    }
-  };
-
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-50">
@@ -94,7 +84,7 @@ export function SubscriptionDetail({ subscription, onClose }: SubscriptionDetail
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+          className="absolute inset-0 bg-black/20 backdrop-blur-sm"
           onClick={onClose}
         />
 
@@ -126,8 +116,8 @@ export function SubscriptionDetail({ subscription, onClose }: SubscriptionDetail
           </div>
 
           {/* Section 1: Billing Info */}
-          <div className="bg-[#141414] rounded-xl p-5 mx-6 mb-4 border border-[#E2E8F0]">
-            <h3 className="text-sm font-semibold text-[#718096] uppercase tracking-wider mb-4">
+          <div className="bg-[#F7F7F5] rounded-xl p-5 mx-6 mb-4 border border-[#E2E8F0]">
+            <h3 className="text-sm font-semibold text-[#718096] mb-4">
               Billing Info
             </h3>
 
@@ -155,8 +145,8 @@ export function SubscriptionDetail({ subscription, onClose }: SubscriptionDetail
           </div>
 
           {/* Section 2: Group */}
-          <div className="bg-[#141414] rounded-xl p-5 mx-6 mb-4 border border-[#E2E8F0]">
-            <h3 className="text-sm font-semibold text-[#718096] uppercase tracking-wider mb-4">
+          <div className="bg-[#F7F7F5] rounded-xl p-5 mx-6 mb-4 border border-[#E2E8F0]">
+            <h3 className="text-sm font-semibold text-[#718096] mb-4">
               Group
             </h3>
 
@@ -179,7 +169,7 @@ export function SubscriptionDetail({ subscription, onClose }: SubscriptionDetail
                 <p className="text-sm text-[#718096]">Not assigned to a group</p>
                 <button
                   onClick={() => toast('Coming soon!', { icon: '🚧' })}
-                  className="px-4 py-2 rounded-lg bg-[#F7F7F5] text-[#718096] text-sm font-medium cursor-not-allowed border border-[#E2E8F0]"
+                  className="px-4 py-2 rounded-lg bg-white border border-[#E2E8F0] text-[#2D3748] text-sm font-medium cursor-not-allowed"
                   disabled
                 >
                   Assign to Group
@@ -189,14 +179,24 @@ export function SubscriptionDetail({ subscription, onClose }: SubscriptionDetail
           </div>
 
           {/* Section 3: Actions */}
-          <div className="bg-[#141414] rounded-xl p-5 mx-6 mb-4 border border-[#E2E8F0]">
-            <h3 className="text-sm font-semibold text-[#718096] uppercase tracking-wider mb-4">
+          <div className="bg-[#F7F7F5] rounded-xl p-5 mx-6 mb-4 border border-[#E2E8F0]">
+            <h3 className="text-sm font-semibold text-[#718096] mb-4">
               Actions
             </h3>
 
             <button
-              onClick={handleCancel}
-              className="flex items-center gap-2 w-full px-4 py-2.5 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 text-sm font-medium transition-colors"
+              onClick={async () => {
+                try {
+                  await api.delete(`/api/subscriptions/${subscription.id}`);
+                  toast.success('Subscription cancelled');
+                  onClose();
+                  // Refresh subscriptions list
+                  window.location.reload();
+                } catch (error) {
+                  toast.error('Failed to cancel subscription');
+                }
+              }}
+              className="flex items-center gap-2 w-full px-4 py-2.5 rounded-lg bg-red-50 text-red-600 border border-red-200 hover:bg-red-100 text-sm font-medium transition-colors"
             >
               <AlertTriangle size={16} />
               Mark as Cancelled
